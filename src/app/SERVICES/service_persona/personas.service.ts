@@ -24,4 +24,17 @@ export class Servicepeople {
 
   }
 
+  handleError (error: HttpErrorResponse) {
+    let errorMessage = '';
+    if (error.error instanceof ErrorEvent) {
+      // Handle client error
+      errorMessage = error.error.message;
+    } else {
+      // Handle server error
+      errorMessage = `Error Code: ${error.status}\nMessage: ${error.message}`;
+    }
+    console.log(errorMessage);
+    return throwError(errorMessage);
+  }
+
 }
