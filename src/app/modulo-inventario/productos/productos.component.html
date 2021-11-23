@@ -1,7 +1,7 @@
 
 
 <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-  <h2 class="h2">Lista de Productos</h2>
+  <h2 class="h2">Productos</h2>
  </div>
 
 <div class="table-responsive">
@@ -10,7 +10,7 @@
   <thead>
     <tr>
       <th scope="col">COD</th>
-            <th scope="col">TIPO</th>
+           <!--<th scope="col">TIPO</th>-->
             <th scope="col">NOMBRE</th>
             <th scope="col">PRECIO</th>
             <th scope="col">IMAGEN</th>
@@ -24,7 +24,7 @@
     <tr>
       <tr *ngFor="let prod of products">
         <th scope="row">{{prod.COD_PRODUCTO}}</th>
-        <td>{{prod.COD_TIP_PRODUCTO}}</td>
+        <!--<td>{{prod.COD_TIP_PRODUCTO}}</td>-->
         <td>{{prod.NOMBRE_PRODUCTO}}</td>
         <td>{{prod.PRECIO}}</td>
         <td>{{prod.FOTOGRAFIA}}</td>
