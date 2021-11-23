@@ -6,7 +6,7 @@ import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http
 @Injectable({
   providedIn: 'root'
 })
-export class people {
+export class Servicepeople {
 
   // Node/Express API
   //REST_API: string = 'http://localhost:3000/API';
@@ -17,9 +17,9 @@ export class people {
 
   constructor (private httpClient: HttpClient) { }
 
-  // mostrar productos
-  GetBooks () {
-    let API_URL = `${this.REST_API}/persona`;
+  // mostrar personas
+  GetPersona () {
+    let API_URL = `${this.REST_API}/people`;
     return this.httpClient.get(API_URL , { headers: this.httpHeaders });
 
   }
