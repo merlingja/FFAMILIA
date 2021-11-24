@@ -1,1 +1,48 @@
+<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+    <h2 class="h2">Personas Registradas</h2>
+</div>
 
+
+<div class="table-responsive">
+
+    <table class="table table-striped table-sm">
+        <thead>
+            <tr>
+                <th scope="col">Codigo</th>
+                <th scope="col">DNI</th>
+                <th scope="col">Primer Nombre</th>
+                <th scope="col">Segundo Nombre</th>
+                <th scope="col">Primer Apellido</th>
+                <th scope="col">Segundo Apellido</th>
+                <th scope="col">Sexo</th>
+                <th scope="col">Estado Civil</th>
+                <th scope="col">Edad</th>
+                <th scope="col">Tipo Cliente</th>
+                <th scope="col">Descripcion</th>
+                <th scope="col">User</th>
+                <th scope="col">Fecha</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <tr *ngFor="let peo of Perso">
+                    <th scope="row">{{peo.COD_PERSONA}}</th>
+                    <td>{{peo.ID}}</td>
+                    <td>{{peo.PRIMERNOMBRE}}</td>
+                    <td>{{peo.SEGUNDONOMBRE}}</td>
+                    <td>{{peo.PRIMERAPELLIDO}}</td>
+                    <td>{{peo.SEGUNDOAPELLIDO}}</td>
+                    <td>{{peo.SEXO}}</td>
+                    <td>{{peo.ESTADOCIVIL}}</td>
+                    <td>{{peo.EDAD}}</td>
+                    <td>{{peo.TIPO_CLIENTE}}</td>
+                    <td>{{peo.DESCRIPCION}}</td>
+                    <td>{{peo.USUARIO_ADD}}</td>
+                    <td>{{peo.FEC_INGRESO}}</td>
+
+
+                    <td class="text-center">
+                </tr>
+
+        </tbody>
+    </table>

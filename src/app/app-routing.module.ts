@@ -27,7 +27,7 @@ const routes: Routes = [
      {path: 'plantas', component: PlantasComponent },
      {path: 'codigoqr', component: CodigoQrComponent },
 
-    { path: 'peo', component: PersonaComponent }
+    { path: 'personas', component: PersonaComponent }
 
   ],
 }
