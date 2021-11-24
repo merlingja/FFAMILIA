@@ -14,7 +14,7 @@ export class PlantasComponent implements OnInit {
 
 
   ngOnInit(): void {
-    this.serviceAppQr.GetPlantas().subscribe(res => {
+    this.serviceAppQr.GetPlantass().subscribe(res => {
       console.log(res)
       this.Plantas =<any>res;
     });
