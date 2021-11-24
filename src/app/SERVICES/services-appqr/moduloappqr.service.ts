@@ -20,7 +20,7 @@ export class ServiceAppQr {
 
   // -----------------------Plantas-----------------
   //obtener todos los datos de las plantas
-  GetPlantas () {
+  GetPlantass () {
     let API_URL = `${this.REST_API}/plantas`;
     return this.httpClient.get(API_URL , { headers: this.httpHeaders });
     
