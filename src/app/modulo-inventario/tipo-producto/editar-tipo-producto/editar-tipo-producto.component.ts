@@ -35,8 +35,7 @@ export class EditarTipoProductoComponent implements OnInit {
       });
 
       this.updateForm = this.formBuilder.group({
-        nombre: '',
-        precio: '',
+        tipo: '',
         descripcion: ''
       });
 
