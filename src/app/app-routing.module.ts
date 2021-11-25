@@ -46,7 +46,7 @@ export const rountingComponents=[
   ProductosComponent,
   InventarioComponent,
   EditarTipoProductoComponent,
-
+  
   PlantasComponent,
   CodigoQrComponent,
 
