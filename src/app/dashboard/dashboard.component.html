@@ -1,10 +1,3 @@
-<!--<p>PANEL DE CONTROL</p>
-<button routerLink="/panel/tipo-productos">TIPO</button>
-<button routerLink="/panel/productos">PRODUCTOS</button>
-<button routerLink="/panel/inventario">INVENTARIO</button> 
-
-<router-outlet></router-outlet>-->
-
 <style>
     .bd-placeholder-img {
       font-size: 1.125rem;
@@ -132,6 +125,9 @@
     </li>
     
   </ul>
+
+
+  
 </div>
 
  </nav>
@@ -199,6 +195,25 @@
 </footer>
 </div>
   </main>
+
+<!--AQUI LA MODAL-->
+  <div class="modal fade" id="modalEditar" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">MODIFICAR PRODUCTO</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <router-outlet name="outlet_modal_editar"></router-outlet>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+          <button type="button" class="btn btn-primary">Salvar</button>
+        </div>
+      </div>
+    </div>
+  </div>
 
 <!--EJEMPLO DE TABLA 
   <div class="table-responsive">

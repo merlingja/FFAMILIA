@@ -11,16 +11,22 @@
               <th scope="col">TIPO</th>
               <th scope="col">CANTIDAD</th>
               <th scope="col">DESCRIPCION</th>
+              <th class="text-center" scope="col">ACTION</th> 
               </tr>
     </thead>
     <tbody>
       <tr>
-        <tr *ngFor="let tipos of tipoProductos">
+        <tr *ngFor="let tipos of tipoProductos ">
           <th scope="row">{{tipos.COD_TIP_PRODUCTO}}</th>
             <td>{{tipos.TIP_PRODUCTO}}</td>
             <td>{{tipos.CANTIDAD}}</td>
-            <td>{{tipos.DES_TIP_PRODUCTO}}</td>
-            <td class="text-center">
+            <td>{{tipos.DES_TIP_PRODUCTO}}</td>                  
+
+            <td><button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalEditar"
+              (click)="modalEditar(tipos.COD_TIP_PRODUCTO)"
+              >Editar</button></td>
+           
+            <!--<td class="text-center">-->
       </tr>
     
     </tbody>

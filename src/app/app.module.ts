@@ -6,8 +6,9 @@ import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule, rountingComponents } from './app-routing.module';
 
 import { AppComponent } from './app.component';
-import {FormsModule} from '@angular/forms';
+import {FormsModule,ReactiveFormsModule} from '@angular/forms';
 import {DashboarModule} from './dashboard/dashboard.module';
+//import { EditarTipoProductoComponent } from './tipo-producto/editar-tipo-producto/editar-tipo-producto.component';
 
 
 
@@ -15,7 +16,8 @@ import {DashboarModule} from './dashboard/dashboard.module';
 @NgModule({
   declarations: [
     AppComponent,
-    rountingComponents
+    rountingComponents,
+    //EditarTipoProductoComponent
     
    
   ],
@@ -24,6 +26,8 @@ import {DashboarModule} from './dashboard/dashboard.module';
     HttpClientModule,
     AppRoutingModule,
     FormsModule,
+    ReactiveFormsModule,
+
     DashboarModule,
     
   ],

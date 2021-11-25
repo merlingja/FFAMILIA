@@ -30,7 +30,7 @@ export class ServiceInventario {
     let API_URL = `${this.REST_API}/tipo-producto/${id}`;
     return this.httpClient.get(API_URL, { headers: this.httpHeaders })
       .pipe(map((res: any) => {
-        return res || {}
+        return res[0] || {}
       }),
         catchError(this.handleError)
       )
