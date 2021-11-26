@@ -35,7 +35,16 @@ export class ServiceInventario {
         catchError(this.handleError)
       )
   }
+  
 
+  // Update
+  updateTipoProducto ( data: any): Observable<any> {
+    let API_URL = `${this.REST_API}/actualizar-tipo-producto`;
+    return this.httpClient.put(API_URL, data, { headers: this.httpHeaders })
+      .pipe(
+        catchError(this.handleError)
+      )
+  }
   //------------------------------PRODUCTOS------------------------------------
   GetProductos() {
     let API_URL = `${this.REST_API}/lista-productos`;
