@@ -62,6 +62,7 @@ export class EditarTipoProductoComponent implements OnInit {
         this.location.back()
       }, (err) => {
         console.log(err);
+        Swal.fire('Ocurrio problema',this.titulo,'error')
     });
   }
 
