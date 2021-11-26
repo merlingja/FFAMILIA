@@ -3,6 +3,7 @@ import {Router, ActivatedRoute} from '@angular/router';
 import {ServiceInventario} from '../../../SERVICES/services_inventario/moduloInventario.service';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { Location } from '@angular/common';
+import Swal from 'sweetalert2';
 
 
 @Component({
@@ -11,6 +12,7 @@ import { Location } from '@angular/common';
   styleUrls: ['./editar-tipo-producto.component.css']
 })
 export class EditarTipoProductoComponent implements OnInit {
+  titulo: string ='';
 
   getId: any;
   updateForm: FormGroup;
@@ -55,6 +57,7 @@ export class EditarTipoProductoComponent implements OnInit {
     this.serviceInventario.updateTipoProducto(this.updateForm.value)
     .subscribe(() => {
         console.log('Data updated successfully!')
+        Swal.fire('Se actualizo con exito',this.titulo,'success')
         //this.ngZone.run(() => this.router.navigateByUrl('/panel/tipo-productos'))
         this.location.back()
       }, (err) => {
