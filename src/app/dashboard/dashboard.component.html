@@ -1,18 +1,18 @@
 <style>
     .bd-placeholder-img {
-      font-size: 1.125rem;
-      text-anchor: middle;
-      -webkit-user-select: none;
-      -moz-user-select: none;
-      user-select: none;
+        font-size: 1.125rem;
+        text-anchor: middle;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        user-select: none;
     }
-
+    
     @media (min-width: 768px) {
-      .bd-placeholder-img-lg {
-        font-size: 3.5rem;
-      }
+        .bd-placeholder-img-lg {
+            font-size: 3.5rem;
+        }
     }
-  </style>
+</style>
 
 <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
 <symbol id="bootstrap" viewBox="0 0 118 94">
@@ -73,149 +73,163 @@
 </symbol>
 </svg>
 
-  
-
-  <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
-
-  <div class="flex-shrink-0 p-3 bg-light" >
 
 
-  
-  <ul class="list-unstyled ps-0" style="padding:0px">
-    <li class="mb-1">
-      <button class="btn btn-primary align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#home-collapse" aria-expanded="true">
+<nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
+
+    <div class="flex-shrink-0 p-3 bg-light">
+
+
+
+        <ul class="list-unstyled ps-0" style="padding:0px">
+            <li class="mb-1">
+                <button class="btn btn-primary align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#home-collapse" aria-expanded="true">
         <svg class="bi me-2" width="16" height="16"><use xlink:href="#home"/></svg>
         Inicio
       </button>
-      <div class="collapse show" id="home-collapse">
-        <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-          <li><a href="#" class="link-dark rounded">
-          <svg class="bi me-2" width="16" height="16"><use xlink:href="#grid"/></svg>
-        Ajustes</a></li>
-          <li>
+                <div class="collapse show" id="home-collapse">
+                    <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+                        <li>
+                            <a href="#" class="link-dark rounded">
+                                <svg class="bi me-2" width="16" height="16"><use xlink:href="#grid"/></svg> Ajustes
+                            </a>
+                        </li>
+                        <li>
 
-            <a href="#" class="link-dark rounded"><svg class="bi me-2" width="16" height="16"><use xlink:href="#people-circle"/></svg>Perfil</a>
-          </li>
-        </ul>
-      </div>
-    </li>
-    <li class="mb-1">
-      <button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#dashboard-collapse" aria-expanded="true">
+                            <a href="#" class="link-dark rounded"><svg class="bi me-2" width="16" height="16"><use xlink:href="#people-circle"/></svg>Perfil</a>
+                        </li>
+                    </ul>
+                </div>
+            </li>
+            <li class="mb-1">
+                <button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#dashboard-collapse" aria-expanded="true">
         Modulo Inventario
       </button>
-      <div class="collapse show" id="dashboard-collapse">
-        <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-          <li><a routerLink="/panel/productos" class="link-dark rounded">Productos</a></li>
-          <li><a routerLink="/panel/tipo-productos" class="link-dark rounded">Tipos Productos</a></li>
-          <li><a routerLink="/panel/inventario" class="link-dark rounded">Inventario</a></li>
-        </ul>
-      </div>
-    </li>
-    <li class="mb-1">
-      <button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#orders-collapse" aria-expanded="true">
+                <div class="collapse show" id="dashboard-collapse">
+                    <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+                        <li><a routerLink="/panel/productos" class="link-dark rounded">Productos</a></li>
+                        <li><a routerLink="/panel/tipo-productos" class="link-dark rounded">Tipos Productos</a></li>
+                        <li><a routerLink="/panel/inventario" class="link-dark rounded">Inventario</a></li>
+                    </ul>
+                </div>
+            </li>
+            <li class="mb-1">
+                <button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#orders-collapse" aria-expanded="true">
         App QR
       </button>
-      <div class="collapse" id="orders-collapse">
-        <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-          <li><a routerLink="/panel/plantas" class="link-dark rounded">Plantas</a></li>
-          <li><a routerLink="/panel/codigoqr" class="link-dark rounded">Codigo Qr</a></li>
-          
+                <div class="collapse" id="orders-collapse">
+                    <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+                        <li><a routerLink="/panel/plantas" class="link-dark rounded">Plantas</a></li>
+                        <li><a routerLink="/panel/codigoqr" class="link-dark rounded">Codigo Qr</a></li>
+
+                    </ul>
+                </div>
+            </li>
+            <li class="mb-1">
+                <button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#orders-collapse" aria-expanded="true">
+        Personas
+      </button>
+                <div class="collapse" id="orders-collapse">
+                    <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+                        <li><a routerLink="/panel/personas" class="link-dark rounded">Personas registradas</a></li>
+
+
+                    </ul>
+                </div>
+            </li>
         </ul>
-      </div>
-    </li>
-    
-  </ul>
 
-
-  
-</div>
-
- </nav>
-
-  <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4" >
-<header class="p-3 bg-dark text-white">
-  <div class="container">
-    <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
-      <a href="/" class="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none">
-        <svg class="bi me-2" width="40" height="32" role="img" aria-label="Bootstrap"><use xlink:href="#bootstrap"/></svg>
-      </a>
-
-      <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
-        <li><a href="/" class="nav-link px-2 text-white">Finca la Familia</a></li>
-   
-      </ul>
-
- <div class="d-flex align-items-center">
-
-
-      <div class="flex-shrink-0 dropdown">
-        <a href="#" class="d-block link-dark text-decoration-none dropdown-toggle" id="dropdownUser2" data-bs-toggle="dropdown" aria-expanded="false">
-          <img src="https://github.com/mdo.png" alt="mdo" width="32" height="32" class="rounded-circle">
-        </a>
-        <ul class="dropdown-menu text-small shadow" aria-labelledby="dropdownUser2">
-          <li><a class="dropdown-item" href="#">New project...</a></li>
-          <li><a class="dropdown-item" href="#">Settings</a></li>
-          <li><a class="dropdown-item" href="#">Profile</a></li>
-          <li><hr class="dropdown-divider"></li>
-          <li><a class="dropdown-item" href="#">Sign out</a></li>
-        </ul>
-      </div>
-    </div>
-    </div>
-  </div>
-</header>
-
-    <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom" >
-      <h1 class="h2">
-        <svg class="bi" width="24" height="24" role="img" aria-label="Dashboard"><use xlink:href="#speedometer2"/></svg>
-      Panel
-    </h1>
 
 
     </div>
 
-<router-outlet>
+</nav>
+
+<main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+    <header class="p-3 bg-dark text-white">
+        <div class="container">
+            <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+                <a href="/" class="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none">
+                    <svg class="bi me-2" width="40" height="32" role="img" aria-label="Bootstrap"><use xlink:href="#bootstrap"/></svg>
+                </a>
+
+                <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
+                    <li><a href="/" class="nav-link px-2 text-white">Finca la Familia</a></li>
+
+                </ul>
+
+                <div class="d-flex align-items-center">
 
 
-  
+                    <div class="flex-shrink-0 dropdown">
+                        <a href="#" class="d-block link-dark text-decoration-none dropdown-toggle" id="dropdownUser2" data-bs-toggle="dropdown" aria-expanded="false">
+                            <img src="https://github.com/mdo.png" alt="mdo" width="32" height="32" class="rounded-circle">
+                        </a>
+                        <ul class="dropdown-menu text-small shadow" aria-labelledby="dropdownUser2">
+                            <li><a class="dropdown-item" href="#">New project...</a></li>
+                            <li><a class="dropdown-item" href="#">Settings</a></li>
+                            <li><a class="dropdown-item" href="#">Profile</a></li>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
+                            <li><a class="dropdown-item" href="#">Sign out</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
 
-</router-outlet>
+    <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+        <h1 class="h2">
+            <svg class="bi" width="24" height="24" role="img" aria-label="Dashboard"><use xlink:href="#speedometer2"/></svg> Panel
+        </h1>
 
-<div class="container">
-<footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
-  <p class="col-md-4 mb-0 text-muted">&copy; 2021 Finca la Familia</p>
 
-  <a href="/" class="col-md-4 d-flex align-items-center justify-content-center mb-3 mb-md-0 me-md-auto link-dark text-decoration-none">
-    
-  </a>
+    </div>
 
-  <ul class="nav col-md-4 justify-content-end">
-    <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">Otros</a></li>
-  </ul>
-</footer>
-</div>
-  </main>
+    <router-outlet>
 
-<!-----------------------------AQUI LA MODAL------------------------------------------->
-  <div class="modal fade" id="modalEditar" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+
+
+
+    </router-outlet>
+
+    <div class="container">
+        <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
+            <p class="col-md-4 mb-0 text-muted">&copy; 2021 Finca la Familia</p>
+
+            <a href="/" class="col-md-4 d-flex align-items-center justify-content-center mb-3 mb-md-0 me-md-auto link-dark text-decoration-none">
+
+            </a>
+
+            <ul class="nav col-md-4 justify-content-end">
+                <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">Otros</a></li>
+            </ul>
+        </footer>
+    </div>
+</main>
+
+<!--AQUI LA MODAL-->
+<div class="modal fade" id="modalEditar" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">MODIFICAR PRODUCTO</h5>
-          <button (click)= "modalCancelar()" type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">MODIFICAR PRODUCTO</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <router-outlet name="outlet_modal_editar"></router-outlet>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                <button type="button" class="btn btn-primary">Salvar</button>
+            </div>
         </div>
-        <div class="modal-body">
-          <router-outlet name="outlet_modal_editar"></router-outlet>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-          <button type="button" class="btn btn-primary">Salvar</button>
-        </div>
-      </div>
     </div>
-  </div>
+</div>
 
-<!--EJEMPLO DE TABLA 
+<!--EJEMPLO DE TABLA
   <div class="table-responsive">
       <table class="table table-striped table-sm">
         <thead>
