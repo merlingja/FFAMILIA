@@ -71,6 +71,30 @@ export class ServiceInventario {
         catchError(this.handleError)
       )
   }
+//Eliminar producto
+  borrarProducto (id: any): Observable<any> {
+    let API_URL = `${this.REST_API}/delete-producto/${id}`;
+    return this.httpClient.delete(API_URL, { headers: this.httpHeaders })
+      .pipe(map((res: any) => {
+        console.log(res.affectedRows)
+        return res;
+      }),
+        catchError(this.handleError)
+      )
+  }
+
+//Insertar producto
+  crearProducto (data: any): Observable<any> {
+    let API_URL = `${this.REST_API}/insertar-producto`;
+    return this.httpClient.post(API_URL, data, { headers: this.httpHeaders })
+      .pipe(map((res: any) => {
+        console.log(res)
+        return res;
+      }),
+        catchError(this.handleError)
+      )
+  }
+
 
  //-------------------------------INVENTARIO------------------------------------
  GetInventarios() {

@@ -15,6 +15,7 @@ import Swal from 'sweetalert2';
 export class ProductosComponent implements OnInit {
     products:any = [];
     updateForm: FormGroup;
+    createForm: FormGroup;
     titulo: string ='';
 
  constructor(
@@ -35,10 +36,24 @@ export class ProductosComponent implements OnInit {
       fec_caducidad:''
 
       });
+
+      this.createForm = this.formBuilder.group({
+        cod_tip_producto: '',
+        nombre_producto: '',
+        precio: '',
+        fotografia: '',
+        vida_util: '',
+        pre_producto: '',
+        fecha_caducidad: '',
+        descripcion: ''
+      });
+
+
+
    }
 
 
-  ngOnInit(): void {
+    ngOnInit(): void {
     this.MostrarDatos();
     
   }
@@ -78,6 +93,36 @@ export class ProductosComponent implements OnInit {
         this.MostrarDatos()
         
       
+      }, (err) => {
+        console.log(err);
+        Swal.fire('Ocurrio problema',this.titulo,'error')
+    });
+  }
+
+  eliminarProducto(id:any, i:number):any{
+    if(window.confirm('Esta seguro de querer elimina el registro?')){
+      this.serviceInventario.borrarProducto(id).subscribe(res=>{
+        if(res.affectedRows==1){
+          console.log("Se elimino el registro");
+          this.products.splice(i, 1);
+        }else{
+          console.log("No se pudo eliminar el registro o, no existe");
+          window.alert("error")
+        }
+      }, (err) => {
+        console.log(err);
+        Swal.fire('Ocurrio problema',this.titulo,'error')
+    });
+    }
+  }
+
+  nuevoProducto(): any {
+    this.serviceInventario.crearProducto( this.createForm.value)
+    .subscribe(() => {
+        console.log('Data updated successfully!')
+        Swal.fire('Se Inserto con exito',this.titulo,'success')
+         this.MostrarDatos();
+         
       }, (err) => {
         console.log(err);
         Swal.fire('Ocurrio problema',this.titulo,'error')
