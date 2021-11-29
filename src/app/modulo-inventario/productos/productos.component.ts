@@ -23,6 +23,11 @@ export class ProductosComponent implements OnInit {
     
   }
 
+  modalEditar(id:number){
+    console.log(id)
+    return this.router.navigate(['/panel',{outlets:{outlet_modal_editar:['editar-producto',id]}}]);
+  }
+
 }
 
 

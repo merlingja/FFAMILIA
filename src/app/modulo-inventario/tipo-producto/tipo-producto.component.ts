@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import {ServiceInventario} from '../../SERVICES/services_inventario/moduloInventario.service';
-import {Router} from '@angular/router';
+import {Router, ActivatedRoute} from '@angular/router';
+import {FormGroup, FormBuilder} from '@angular/forms';
+import Swal from 'sweetalert2';
+
 
 @Component({
   selector: 'app-tipo-producto',
@@ -9,22 +12,66 @@ import {Router} from '@angular/router';
 })
 export class TipoProductoComponent implements OnInit {
   tipoProductos:any = [];
+  updateForm: FormGroup;
+  titulo: string ='';
+
   
-   constructor(private serviceInventario:ServiceInventario, private router:Router) { }
+   constructor(
+     private serviceInventario:ServiceInventario, 
+     private router:Router,
+     private activatedRoute: ActivatedRoute,
+     public formBuilder: FormBuilder) {
+
+      this.updateForm = this.formBuilder.group({
+        cod_tip_producto: '',
+        tip_producto: '',
+        des_tip_producto:''
+  
+        });
+      }
 
 
   ngOnInit(): void {
+    this.ListarDatos();
+      }
+
+  ListarDatos(){
     this.serviceInventario.GetTipos().subscribe(res => {
       console.log(res)
       this.tipoProductos =<any>res;
     });
-    
+
   }
 
-  modalEditar(id:number){
-    console.log(id)
-    return this.router.navigate(['/panel',{outlets:{outlet_modal_editar:['editar-tipo-producto',id]}}]);
+  EditarTipoProducto(id:number){
+    this.serviceInventario.GetTipoProducto(id).subscribe(res => {
+
+      console.log(res)
+      this.updateForm.setValue({
+        cod_tip_producto: id,
+        tip_producto: res['TIP_PRODUCTO'],
+        des_tip_producto: res['DES_TIP_PRODUCTO']
+
+
+      });
+    });
   }
+
+  onUpdate(): any {
+    this.serviceInventario.updateTipoProducto(this.updateForm.value)
+    .subscribe(() => {
+        console.log('Data updated successfully!')
+        Swal.fire('Se actualizo con exito',this.titulo,'success')
+        this.ListarDatos()
+        
+      
+      }, (err) => {
+        console.log(err);
+        Swal.fire('Ocurrio problema',this.titulo,'error')
+    });
+  }
+
+  
 
 }
 

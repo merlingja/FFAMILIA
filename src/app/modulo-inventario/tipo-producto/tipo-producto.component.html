@@ -1,5 +1,9 @@
   <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
     <h2 class="h2">Tipos de Producto</h2>
+    <!--<button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#modalnuevo"
+              (click)="modalnuevo()"
+              >Añadir</button>-->
+
    </div>
   
   <div class="table-responsive">
@@ -22,8 +26,8 @@
             <td>{{tipos.CANTIDAD}}</td>
             <td>{{tipos.DES_TIP_PRODUCTO}}</td>                  
 
-            <td><button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalEditar"
-              (click)="modalEditar(tipos.COD_TIP_PRODUCTO)"
+            <td><button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalEditarTipoProducto"
+              (click)="EditarTipoProducto(tipos.COD_TIP_PRODUCTO)"
               >Editar</button></td>
            
             <td class="text-center">
@@ -31,3 +35,42 @@
     
     </tbody>
   </table>
+
+<!---Aqui la modal-->
+  <div class="modal fade" id="modalEditarTipoProducto" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">ACTUALIZAR INFORMACION</h5>
+         <!--<button (click)= "modalCancelar()" type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>-->
+        </div>
+        <div class="modal-body">
+          <!--<router-outlet name="outlet_modal_editar"></router-outlet>-->
+          <form [formGroup]="updateForm" (ngSubmit)= "onUpdate()" >
+              
+            <div class="form-group">
+              <label>TIPO</label>
+              <input class="form-control" type="text" formControlName="tip_producto" required>
+            </div>
+    
+             
+            <div class="form-group">
+              <label>DESCRIPCION</label>
+              <input class="form-control" type="textarea" formControlName="des_tip_producto" required>
+            </div>
+  <br>
+           <div class="form-group">
+              <button class="btn btn-primary btn-block" type="submit">Editar</button>
+            </div>
+          </form>
+          
+
+
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancelar</button>
+          <!--<button type="button" class="btn btn-primary">Salvar</button>-->
+        </div>
+      </div>
+    </div>
+</div>

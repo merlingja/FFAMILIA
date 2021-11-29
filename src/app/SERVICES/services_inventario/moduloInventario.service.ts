@@ -46,10 +46,30 @@ export class ServiceInventario {
       )
   }
   //------------------------------PRODUCTOS------------------------------------
-  GetProductos() {
+    GetProductos() {
     let API_URL = `${this.REST_API}/lista-productos`;
     return this.httpClient.get(API_URL , { headers: this.httpHeaders });
 
+  }
+
+  // Obtener un solo objeto
+  GetProducto (id: any): Observable<any> {
+    let API_URL = `${this.REST_API}/productoid/${id}`;
+    return this.httpClient.get(API_URL, { headers: this.httpHeaders })
+      .pipe(map((res: any) => {
+        return res[0] || {}
+      }),
+        catchError(this.handleError)
+      )
+  }
+
+  // Update
+  updateProductos ( data: any): Observable<any> {
+    let API_URL = `${this.REST_API}/actualizar-producto`;
+    return this.httpClient.put(API_URL, data, { headers: this.httpHeaders })
+      .pipe(
+        catchError(this.handleError)
+      )
   }
 
  //-------------------------------INVENTARIO------------------------------------

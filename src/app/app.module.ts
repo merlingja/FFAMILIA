@@ -8,8 +8,6 @@ import { AppRoutingModule, rountingComponents } from './app-routing.module';
 import { AppComponent } from './app.component';
 import {FormsModule,ReactiveFormsModule} from '@angular/forms';
 import {DashboarModule} from './dashboard/dashboard.module';
-//import { EditarTipoProductoComponent } from './tipo-producto/editar-tipo-producto/editar-tipo-producto.component';
-
 
 
 
@@ -17,8 +15,7 @@ import {DashboarModule} from './dashboard/dashboard.module';
   declarations: [
     AppComponent,
     rountingComponents,
-    //EditarTipoProductoComponent
-    
+        
    
   ],
   imports: [
