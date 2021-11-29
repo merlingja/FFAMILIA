@@ -20,6 +20,7 @@
                 <!--<th scope="col">VENCIMIENTO</th>
                 <th scope="col">DESCRIPCION</th>
                 <th scope="col">PRESENTACION</th>-->
+                <th class="text-center" scope="col">ACTION</th> 
         </tr>
       </thead>
       <tbody>
@@ -41,8 +42,55 @@
             <td>{{invt.TIP_PRODUCTO}}</td>
             <td>{{invt.DES_TIP_PRODUCTO}}</td>-->
 
+            <td><button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalEditarInventario"
+              (click)="EditarInventario(invt.COD_INVENTARIO)"
+              >Editar</button></td>
+
             <td class="text-center">
         </tr>
       
       </tbody>
     </table>
+
+    <!---Aqui la modal para actualizar en inventario-------------------------------------------------------------------------------->
+  <div class="modal fade" id="modalEditarInventario" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">ACTUALIZAR INFORMACION</h5>
+         
+        </div>
+        <div class="modal-body">
+          
+          <form [formGroup]="updateForm" (ngSubmit)= "onUpdate()" >
+              
+            <div class="form-group">
+              <label>ID PRODUCTO</label>
+              <input class="form-control" type="text" formControlName="cod_producto" required>
+            </div>
+    
+             
+            <div class="form-group">
+              <label>EXISTENCIA</label>
+              <input class="form-control" type="textarea" formControlName="can_existencia" required>
+            </div>
+
+            <div class="form-group">
+              <label>TRANSACCION</label>
+              <input class="form-control" type="textarea" formControlName="tip_transaccion" required>
+            </div>
+  <br>
+           <div class="form-group">
+              <button class="btn btn-primary btn-block" type="submit">Editar</button>
+            </div>
+          </form>
+          
+
+
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancelar</button>
+          </div>
+      </div>
+    </div>
+</div>

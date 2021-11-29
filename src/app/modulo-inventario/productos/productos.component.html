@@ -40,7 +40,7 @@
   </tbody>
 </table>
 
-<!---Aqui la modal-->
+<!---Aqui la modal para actualizar un producto----------------------------->
 <div class="modal fade" id="modalEditarProducto" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
@@ -52,7 +52,7 @@
          <form [formGroup]="updateForm" (ngSubmit)= "onUpdate()" >
             
           <div class="form-group">
-            <label>TIPO PRODUCTO</label>
+            <label>ID TIPO PRODUCTO</label>
             <input class="form-control" type="text" formControlName="cod_tip_producto" required>
           </div>
   
