@@ -1,5 +1,3 @@
-
-
 <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
   <h2 class="h2">Productos</h2>
  </div>
@@ -33,8 +31,8 @@
         <td>{{prod.DESCRIPCION}}</td>
         <td>{{prod.PRE_PRODUCTO}}</td>
         <td>{{prod.FEC_CADUCIDAD}}</td>
-        <td><button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalEditar"
-          (click)="modalEditar(prod.COD_PRODUCTO)"
+        <td><button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalEditarProducto"
+          (click)="EditarProducto(prod.COD_PRODUCTO)"
           >Editar</button></td>
         <td class="text-center">
     </tr>
@@ -42,44 +40,74 @@
   </tbody>
 </table>
 
+<!---Aqui la modal-->
+<div class="modal fade" id="modalEditarProducto" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">ACTUALIZAR INFORMACION</h5>
+        </div>
 
-<!--<div class="container">
-    <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-      <h2 class="h2"> Productos</h2>
-    </div>
+      <div class="modal-body">
+         <form [formGroup]="updateForm" (ngSubmit)= "onUpdate()" >
+            
+          <div class="form-group">
+            <label>TIPO PRODUCTO</label>
+            <input class="form-control" type="text" formControlName="cod_tip_producto" required>
+          </div>
   
-    <div class="table-responsive">
-      <table class="table table-bordered">
-        <thead>
-          <tr>
-            <th scope="col">cod</th>
-            <th scope="col">tipo</th>
-            <th scope="col">Nombre</th>
-            <th scope="col">precio</th>
-            <th scope="col">Imagen</th>
-            <th scope="col">vida util</th>
-            <th scope="col">descripcion</th>
-            <th scope="col">presentacion</th>
-            <th scope="col">vencimiento</th>
-            <th class="text-center" scope="col">Action</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor="let boo of products">
-            <th scope="row">{{boo.COD_PRODUCTO}}</th>
-            <td>{{boo.COD_TIP_PRODUCTO}}</td>
-            <td>{{boo.NOMBRE_PRODUCTO}}</td>
-            <td>{{boo.PRECIO}}</td>
-            <td>{{boo.FOTOGRAFIA}}</td>
-            <td>{{boo.VIDA_UTIL}}</td>
-            <td>{{boo.DESCRIPCION}}</td>
-            <td>{{boo.PRE_PRODUCTO}}</td>
-            <td>{{boo.FEC_CADUCIDAD}}</td>
-            <td class="text-center">
-              <button class="btn btn-sm btn-primary" routerLink="/edit-boo/{{boo.COD_PRODUCTO}}">Edit</button>
-          </tr>
-        </tbody>
-      </table>
+           
+          <div class="form-group">
+            <label>NOMBRE PRODUCTO</label>
+            <input class="form-control" type="textarea" formControlName="nombre_producto" required>
+          </div>
+
+          <div class="form-group">
+            <label>PRECIO</label>
+            <input class="form-control" type="text" formControlName="precio" required>
+          </div>
+  
+           
+          <div class="form-group">
+            <label>FOTOGRAFIA</label>
+            <input class="form-control" type="textarea" formControlName="fotografia" required>
+          </div>
+
+          <div class="form-group">
+            <label>VIDA UTIL</label>
+            <input class="form-control" type="text" formControlName="vida_util" required>
+          </div>
+  
+           
+          <div class="form-group">
+            <label>DESCRIPCION</label>
+            <input class="form-control" type="textarea" formControlName="descripcion" required>
+          </div>
+
+          <div class="form-group">
+            <label>PRESENTACION</label>
+            <input class="form-control" type="text" formControlName="pre_producto" required>
+          </div>
+  
+           
+          <div class="form-group">
+            <label>CADUCIDAD</label>
+            <input class="form-control" type="textarea" formControlName="fec_caducidad" required>
+          </div>
+<br>
+         <div class="form-group">
+            <button class="btn btn-primary btn-block" type="submit">Editar</button>
+          </div>
+        </form>
+        
+
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancelar</button>
+        
+      </div>
     </div>
-  </div>-->
+  </div>
+</div>
 
