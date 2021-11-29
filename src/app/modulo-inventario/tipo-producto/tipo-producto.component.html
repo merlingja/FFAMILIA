@@ -1,8 +1,6 @@
   <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
     <h2 class="h2">Tipos de Producto</h2>
-    <!--<button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#modalnuevo"
-              (click)="modalnuevo()"
-              >Añadir</button>-->
+    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#nuevoTipoProducto" >Nuevo</button>
 
    </div>
   
@@ -19,8 +17,8 @@
               </tr>
     </thead>
     <tbody>
-      <tr>
-        <tr *ngFor="let tipos of tipoProductos ">
+    
+        <tr *ngFor="let tipos of tipoProductos; let i=index">
           <th scope="row">{{tipos.COD_TIP_PRODUCTO}}</th>
             <td>{{tipos.TIP_PRODUCTO}}</td>
             <td>{{tipos.CANTIDAD}}</td>
@@ -29,9 +27,12 @@
             <td><button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalEditarTipoProducto"
               (click)="EditarTipoProducto(tipos.COD_TIP_PRODUCTO)"
               >Editar</button></td>
+
+              <td><button type="button" class="btn btn-danger" data-bs-toggle="modal" 
+                (click)="eliminarTipoProducto(tipos.COD_TIP_PRODUCTO, i)"
+                >Borrar</button></td>
            
-            <td class="text-center">
-      </tr>
+                </tr>
     
     </tbody>
   </table>
@@ -73,4 +74,46 @@
         </div>
       </div>
     </div>
+</div>
+
+<!---Aqui la modal para Insertar tipo de PRODUCTO-->
+
+<div class="modal fade" id="nuevoTipoProducto" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">AGREGAR NUEVO</h5>
+        
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" ></button>
+
+      </div>
+      <div class="modal-body">
+   <div class="row justify-content-center mt-5">
+  <div class="col-md-4">
+    <form [formGroup]="createForm" (ngSubmit)="nuevoTipoProducto()">
+
+      <div class="form-group">
+        <label>TIPO</label>
+        <input class="form-control" type="text" formControlName="tipo" required>
+      </div>
+
+       
+      <div class="form-group">
+        <label>DESCRIPCION</label>
+        <input class="form-control" type="textarea" formControlName="descripcion" required>
+      </div>
+      
+
+      <div class="form-group">
+        <button class="btn btn-success btn-block" type="submit">Guardar</button>
+      </div>
+
+    </form>
+  </div>
+</div>      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" >Cancelar</button>
+      </div>
+    </div>
+  </div>
 </div>

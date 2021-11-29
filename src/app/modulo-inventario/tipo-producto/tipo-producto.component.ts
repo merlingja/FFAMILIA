@@ -13,6 +13,7 @@ import Swal from 'sweetalert2';
 export class TipoProductoComponent implements OnInit {
   tipoProductos:any = [];
   updateForm: FormGroup;
+  createForm: FormGroup;
   titulo: string ='';
 
   
@@ -28,6 +29,13 @@ export class TipoProductoComponent implements OnInit {
         des_tip_producto:''
   
         });
+
+        this.createForm = this.formBuilder.group({
+        tipo: '',
+        descripcion:''
+        });
+  
+
       }
 
 
@@ -65,6 +73,35 @@ export class TipoProductoComponent implements OnInit {
         this.ListarDatos()
         
       
+      }, (err) => {
+        console.log(err);
+        Swal.fire('Ocurrio problema',this.titulo,'error')
+    });
+  }
+
+  eliminarTipoProducto(id:any, i:number):any{
+    if(window.confirm('Esta seguro de querer elimina el registro?')){
+      this.serviceInventario.borrarTipoProducto(id).subscribe(res=>{
+        if(res.affectedRows==1){
+          console.log("Se elimino el registro");
+          this.tipoProductos.splice(i, 1);
+        }else{
+          console.log("No se pudo eliminar el registro o, no existe");
+          window.alert("error")
+        }
+      }, (err) => {
+        console.log(err);
+        Swal.fire('Ocurrio problema',this.titulo,'error')
+    });
+    }
+  }
+
+  nuevoTipoProducto(): any {
+    this.serviceInventario.crearTipoProducto( this.createForm.value).subscribe(() => {
+        console.log('Data updated successfully!')
+        Swal.fire('Se Inserto con exito',this.titulo,'success')
+         this.ListarDatos();
+         
       }, (err) => {
         console.log(err);
         Swal.fire('Ocurrio problema',this.titulo,'error')
