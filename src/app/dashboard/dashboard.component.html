@@ -127,11 +127,24 @@
             </li>
             <li class="mb-1">
                 <button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#orders-collapse" aria-expanded="true">
-        Personas
+        Clientes
       </button>
                 <div class="collapse" id="orders-collapse">
                     <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-                        <li><a routerLink="/panel/personas" class="link-dark rounded">Personas registradas</a></li>
+                        <li><a routerLink="/panel/personas" class="link-dark rounded">Clientes registrados</a></li>
+
+
+                    </ul>
+                </div>
+            </li>
+
+            <li class="mb-1">
+                <button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#orders-collapse" aria-expanded="true">
+      Empleados
+    </button>
+                <div class="collapse" id="orders-collapse">
+                    <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+                        <li><a routerLink="/panel/empleadoreg" class="link-dark rounded">Empleados registradas</a></li>
 
 
                     </ul>
@@ -211,39 +224,39 @@
 </main>
 
 <!-----------------------------AQUI LA MODAL PARA TODOS LOS COMPONENTES DE EDITAR------------------------------------------->
-  <div class="modal fade" id="modalEditar" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="modalEditar" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">ACTUALIZAR INFORMACION</h5>
-          <button (click)= "modalCancelar()" type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">ACTUALIZAR INFORMACION</h5>
+                <button (click)="modalCancelar()" type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <router-outlet name="outlet_modal_editar"></router-outlet>
+            </div>
+            <div class="modal-footer">
+                <button (click)="modalCancelar()" type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                <button type="button" class="btn btn-primary">Salvar</button>
+            </div>
         </div>
-        <div class="modal-body">
-          <router-outlet name="outlet_modal_editar"></router-outlet>
-        </div>
-        <div class="modal-footer">
-          <button (click)= "modalCancelar()" type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-          <button type="button" class="btn btn-primary">Salvar</button>
-        </div>
-      </div>
     </div>
 </div>
 
 <!-----------------------------AQUI LA MODAL PARA TODOS LOS COMPONENTES DE AÑADIR NUEVO------------------------------------------->
 <div class="modal fade" id="modalnuevo" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">ACTUALIZAR INFORMACION</h5>
-        <button (click)= "modalCancelar()" type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        <router-outlet name="outlet_modal_nuevo"></router-outlet>
-      </div>
-      <div class="modal-footer">
-        <button (click)= "modalCancelar()" type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-        <button type="button" class="btn btn-primary">Salvar</button>
-      </div>
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">ACTUALIZAR INFORMACION</h5>
+                <button (click)="modalCancelar()" type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <router-outlet name="outlet_modal_nuevo"></router-outlet>
+            </div>
+            <div class="modal-footer">
+                <button (click)="modalCancelar()" type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                <button type="button" class="btn btn-primary">Salvar</button>
+            </div>
+        </div>
     </div>
-  </div>
 </div>
