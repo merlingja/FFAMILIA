@@ -25,6 +25,27 @@ export class ServicePeople {
 
   }
 
+
+  // Obtener un solo objeto
+  GetUnaPersona(id: any): Observable<any> {
+    let API_URL = `${this.REST_API}/peopleid/${id}`;
+    return this.httpClient.get(API_URL, { headers: this.httpHeaders })
+      .pipe(map((res: any) => {
+        return res[0] || {}
+      }),
+        catchError(this.handleError)
+      )
+  }
+
+  // Update
+  updatePersona ( data: any): Observable<any> {
+    let API_URL = `${this.REST_API}/actpersona`;
+    return this.httpClient.put(API_URL, data, { headers: this.httpHeaders })
+      .pipe(
+        catchError(this.handleError)
+      )
+  }
+
   handleError (error: HttpErrorResponse) {
     let errorMessage = '';
     if (error.error instanceof ErrorEvent) {

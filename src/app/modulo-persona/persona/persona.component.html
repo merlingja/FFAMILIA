@@ -1,6 +1,9 @@
-<<<<<<< Updated upstream
+<!DOCTYPE html>
+
+<html>
 <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
     <h2 class="h2">Personas Registradas</h2>
+    <button type="button" class="btn btn-primary" data-bs-toggle="modal">Nuevo</button>
 </div>
 
 
@@ -40,12 +43,104 @@
                     <td>{{peo.DESCRIPCION}}</td>
                     <td>{{peo.USUARIO_ADD}}</td>
                     <td>{{peo.FEC_INGRESO}}</td>
-
-
                     <td class="text-center">
+
+                        <td><button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalEditarPersona" (click)="EditarPersona(peo.COD_PERSONA)">Editar</button></td>
+
                 </tr>
 
         </tbody>
     </table>
-=======
->>>>>>> Stashed changes
+
+    <!---Aqui la modal para actualizar tipo de PRODUCTO-->
+    <div class="modal fade" id="modalEditarPersona" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">ACTUALIZAR INFORMACION</h5>
+                    <!--<button (click)= "modalCancelar()" type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>-->
+                </div>
+                <div class="modal-body">
+                    <div class="col-md-4">
+                        <form [formGroup]="updateForm" (ngSubmit)="onUpdate()">
+
+                            <div class="form-group">
+                                <label>DNI</label>
+                                <input class="form-control" type="text" formControlName="ID" required>
+                            </div>
+
+
+                            <div class="form-group">
+                                <label>Nombre 1</label>
+                                <input class="form-control" type="textarea" formControlName="PRIMERNOMBRE" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label>Nombre 2</label>
+                                <input class="form-control" type="textarea" formControlName="SEGUNDONOMBRE" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label>Apellido 1</label>
+                                <input class="form-control" type="textarea" formControlName="PRIMERAPELLIDO" required>
+
+                            </div>
+
+                            <div class="form-group">
+                                <label>Apellido 2</label>
+                                <input class="form-control" type="textarea" formControlName="SEGUNDOAPELLIDO" required>
+
+                            </div>
+
+                            <div class="form-group">
+                                <label>Sexo</label>
+                                <input class="form-control" type="textarea" formControlName="SEXO" required>
+
+                            </div>
+
+                            <div class="form-group">
+                                <label>Estado Civil</label>
+                                <input class="form-control" type="textarea" formControlName="ESTADOCIVIL" required>
+
+                            </div>
+
+                            <div class="form-group">
+                                <label>Edad</label>
+                                <input class="form-control" type="textarea" formControlName="EDAD" required>
+
+                            </div>
+
+                            <div class="form-group">
+                                <label>Tipo Cliente</label>
+                                <input class="form-control" type="textarea" formControlName="TIPO_CLIENTE" required>
+
+                            </div>
+
+                            <div class="form-group">
+                                <label>Descripcion</label>
+                                <input class="form-control" type="textarea" formControlName="DESCRIPCION" required>
+
+                            </div>
+
+                            <div class="form-group">
+                                <label>usuario</label>
+                                <input class="form-control" type="textarea" formControlName="USUARIO_ADD" required>
+
+                            </div>
+
+
+                            <br>
+                            <div class="form-group">
+                                <button class="btn btn-primary btn-block" type="submit">Editar</button>
+                            </div>
+                        </form>
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancelar</button>
+                    <!--<button type="button" class="btn btn-primary">Salvar</button>-->
+                </div>
+            </div>
+        </div>
+    </div>
