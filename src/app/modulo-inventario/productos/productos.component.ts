@@ -45,7 +45,7 @@ export class ProductosComponent implements OnInit {
         fotografia: '',
         vida_util: '',
         pre_producto: '',
-        fecha_caducidad: '',
+        fec_caducidad: '',
         descripcion: ''
       });
 
