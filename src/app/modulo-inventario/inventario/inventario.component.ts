@@ -24,7 +24,7 @@ export class InventarioComponent implements OnInit {
       this.updateForm = this.formBuilder.group({
         cod_producto: '',
         can_existencia: '',
-        //tip_transaccion: ''
+        tip_transaccion: ''
                 
   
         });
@@ -67,7 +67,7 @@ EditarInventario(id:number){
     this.updateForm.setValue({
       cod_producto:res['COD_PRODUCTO'],
       can_existencia: res['CAN_EXISTENCIA'],
-      //tip_transaccion: res['']
+      tip_transaccion: ''
       
     });
   });
