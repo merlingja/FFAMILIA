@@ -14,6 +14,7 @@ import Swal from 'sweetalert2';
 
 export class ProductosComponent implements OnInit {
     products:any = [];
+    tipoProductos:any = [];
     updateForm: FormGroup;
     createForm: FormGroup;
     titulo: string ='';
@@ -65,6 +66,14 @@ export class ProductosComponent implements OnInit {
     });
 
   }
+//trae los tipos de productos
+  tiposProductos(){
+    this.serviceInventario.GetTipos().subscribe(res => {
+      console.log(res)
+      this.tipoProductos =<any>res;
+    });
+
+  }
 
   EditarProducto(id:number){
     this.serviceInventario.GetProducto(id).subscribe(res => {
@@ -104,6 +113,7 @@ export class ProductosComponent implements OnInit {
       this.serviceInventario.borrarProducto(id).subscribe(res=>{
         if(res.affectedRows==1){
           console.log("Se elimino el registro");
+          Swal.fire('Se elimino con exito',this.titulo,'success')
           this.products.splice(i, 1);
         }else{
           console.log("No se pudo eliminar el registro o, no existe");
@@ -111,7 +121,7 @@ export class ProductosComponent implements OnInit {
         }
       }, (err) => {
         console.log(err);
-        Swal.fire('Ocurrio problema',this.titulo,'error')
+        Swal.fire('No se puede eliminar registro',this.titulo,'error')
     });
     }
   }
@@ -127,6 +137,10 @@ export class ProductosComponent implements OnInit {
         console.log(err);
         Swal.fire('Ocurrio problema',this.titulo,'error')
     });
+  }
+
+ nuevoProductoModal(){
+    this.tiposProductos();
   }
 
    
