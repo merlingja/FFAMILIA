@@ -12,6 +12,7 @@ import Swal from 'sweetalert2';
 export class InventarioComponent implements OnInit {
   inv:any = [];
   productos:any = [];
+  pro_inv:any = [];
   updateForm: FormGroup;
   createForm: FormGroup;
   titulo: string ='';
@@ -66,10 +67,10 @@ EditarInventario(id:number){
     console.log(res)
     this.updateForm.setValue({
       cod_producto:res['COD_PRODUCTO'],
-      can_existencia: res['CAN_EXISTENCIA'],
-      tip_transaccion: ''
-      
+      can_existencia: '',
+      tip_transaccion: ''      
     });
+    this.pro_inv =res;
   });
 }
 
