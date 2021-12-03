@@ -84,6 +84,8 @@ export class TipoProductoComponent implements OnInit {
       this.serviceInventario.borrarTipoProducto(id).subscribe(res=>{
         if(res.affectedRows==1){
           console.log("Se elimino el registro");
+          Swal.fire('Se elimino con exito',this.titulo,'success')
+
           this.tipoProductos.splice(i, 1);
         }else{
           console.log("No se pudo eliminar el registro o, no existe");

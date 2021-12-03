@@ -9,8 +9,8 @@ import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http
 })
 export class ServiceInventario {
 
-  // Node/Express API
-  //REST_API: string = 'http://localhost:3000/API';
+  
+  
   REST_API:string='http://localhost:3000/API';
 
   // Http Header
@@ -87,7 +87,8 @@ export class ServiceInventario {
       )
   }
 
-  // Update
+  // Actualizar producto
+  
   updateProductos ( data: any): Observable<any> {
     let API_URL = `${this.REST_API}/actualizar-producto`;
     return this.httpClient.put(API_URL, data, { headers: this.httpHeaders })
@@ -138,11 +139,23 @@ GetInventario (id: any): Observable<any> {
     )
 }
 
-// Update
+// Actualizar un producto en inventario
 updateInventory ( data: any): Observable<any> {
   let API_URL = `${this.REST_API}/actualizar-inventario`;
   return this.httpClient.put(API_URL, data, { headers: this.httpHeaders })
     .pipe(
+      catchError(this.handleError)
+    )
+}
+
+//Insertar producto en inventario
+crearProductoInventario(data: any): Observable<any> {
+  let API_URL = `${this.REST_API}/insertar-inventario`;
+  return this.httpClient.post(API_URL, data, { headers: this.httpHeaders })
+    .pipe(map((res: any) => {
+      console.log(res)
+      return res;
+    }),
       catchError(this.handleError)
     )
 }
