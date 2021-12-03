@@ -126,30 +126,19 @@
                 </div>
             </li>
             <li class="mb-1">
-                <button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#orders-collapse" aria-expanded="true">
-        Clientes
-      </button>
-                <div class="collapse" id="orders-collapse">
-                    <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-                        <li><a routerLink="/panel/personas" class="link-dark rounded">Clientes registrados</a></li>
-
-
-                    </ul>
-                </div>
-            </li>
-
-            <li class="mb-1">
-                <button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#orders-collapse" aria-expanded="true">
-      Empleados
+                <button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#dashboard-collapse" aria-expanded="true">
+      Persona
     </button>
-                <div class="collapse" id="orders-collapse">
+                <div class="collapse show" id="dashboard-collapse">
                     <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-                        <li><a routerLink="/panel/empleadoreg" class="link-dark rounded">Empleados registradas</a></li>
-
+                        <li><a routerLink="/panel/personas" class="link-dark rounded">Clientes Registrados</a></li>
+                        <li><a routerLink="/panel/empleadoreg" class="link-dark rounded">Empleados Registrados</a></li>
 
                     </ul>
                 </div>
             </li>
+
+
         </ul>
 
 
@@ -200,7 +189,6 @@
 
 
     </div>
-
     <router-outlet>
 
 
@@ -209,6 +197,9 @@
     </router-outlet>
 
     <div class="container">
+
+
+
         <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
             <p class="col-md-4 mb-0 text-muted">&copy; 2021 Finca la Familia</p>
 
@@ -221,6 +212,7 @@
             </ul>
         </footer>
     </div>
+
 </main>
 
 <!-----------------------------AQUI LA MODAL PARA TODOS LOS COMPONENTES DE EDITAR------------------------------------------->

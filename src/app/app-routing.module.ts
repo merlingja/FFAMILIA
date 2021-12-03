@@ -12,6 +12,7 @@ import { PlantasComponent } from './modulo-Appqr/Plantas/plantas.component';
 import { CodigoQrComponent } from './modulo-Appqr/CodigoQr/codigoqr.component';
 
 import {PersonaComponent} from './modulo-persona/persona/persona.component';
+import {EmpleadoComponent} from './modulo-persona/empleado/empleado.component';
 
 
 
@@ -25,13 +26,14 @@ const routes: Routes = [
      { path: 'tipo-productos', component: TipoProductoComponent },
      { path: 'productos', component: ProductosComponent },
      {path: 'inventario', component: InventarioComponent },
-     
-     
+
+
 
      {path: 'plantas', component: PlantasComponent },
      {path: 'codigoqr', component: CodigoQrComponent },
 
-    { path: 'personas', component: PersonaComponent }
+    { path: 'personas', component: PersonaComponent },
+    {path: 'empleadoreg', component: EmpleadoComponent}
 
   ],
 }
@@ -47,10 +49,11 @@ export const rountingComponents=[
   TipoProductoComponent,
   ProductosComponent,
   InventarioComponent,
-  
-  
+
+
   PlantasComponent,
   CodigoQrComponent,
 
-  PersonaComponent ]
+  PersonaComponent,
+EmpleadoComponent ]
 

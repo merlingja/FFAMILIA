@@ -45,6 +45,81 @@ export class ServicePeople {
         catchError(this.handleError)
       )
   }
+//nueva persona
+  crearPersona (data: any): Observable<any> {
+    let API_URL = `${this.REST_API}/insertarpersona`;
+    return this.httpClient.post(API_URL, data, { headers: this.httpHeaders })
+      .pipe(map((res: any) => {
+        console.log(res)
+        return res;
+      }),
+        catchError(this.handleError)
+      )
+  }
+
+  borrarPersona (id: any): Observable<any> {
+    let API_URL = `${this.REST_API}/deletepeople/${id}`;
+    return this.httpClient.delete(API_URL, { headers: this.httpHeaders })
+      .pipe(map((res: any) => {
+        console.log(res.affectedRows)
+        return res;
+      }),
+        catchError(this.handleError)
+      )
+  }
+
+  //--------------------EMPLEADO COMPONENT------------------//
+
+   // mostrar empleado
+   GetEmpleado () {
+    let API_URL = `${this.REST_API}/empleado`;
+    return this.httpClient.get(API_URL , { headers: this.httpHeaders });
+
+  }
+
+  // Obtener un solo objeto
+  GetUnEmpleado(id: any): Observable<any> {
+    let API_URL = `${this.REST_API}/empleadoid/${id}`;
+    return this.httpClient.get(API_URL, { headers: this.httpHeaders })
+      .pipe(map((res: any) => {
+        return res[0] || {}
+      }),
+        catchError(this.handleError)
+      )
+  }
+
+  // Update
+  updateEmpleado ( data: any): Observable<any> {
+    let API_URL = `${this.REST_API}/actemployee`;
+    return this.httpClient.put(API_URL, data, { headers: this.httpHeaders })
+      .pipe(
+        catchError(this.handleError)
+      )
+  }
+
+  //nueva empleado
+  crearEmpleado (data: any): Observable<any> {
+    let API_URL = `${this.REST_API}/insertarempl`;
+    return this.httpClient.post(API_URL, data, { headers: this.httpHeaders })
+      .pipe(map((res: any) => {
+        console.log(res)
+        return res;
+      }),
+        catchError(this.handleError)
+      )
+  }
+  //Eliminar EMPLEADO
+  borrarEmpleado (id: any): Observable<any> {
+    let API_URL = `${this.REST_API}/deleteemp/${id}`;
+    return this.httpClient.delete(API_URL, { headers: this.httpHeaders })
+      .pipe(map((res: any) => {
+        console.log(res.affectedRows)
+        return res;
+      }),
+        catchError(this.handleError)
+      )
+  }
+
 
   handleError (error: HttpErrorResponse) {
     let errorMessage = '';

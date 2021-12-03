@@ -12,8 +12,8 @@ import Swal from 'sweetalert2';
 export class PersonaComponent implements OnInit {
  Perso:any = [];
  updateForm: FormGroup;
-  //createForm: FormGroup;
   titulo: string ='';
+  createForm: FormGroup;
 
   constructor(private servicePeople:ServicePeople,
     private router:Router,
@@ -21,64 +21,125 @@ export class PersonaComponent implements OnInit {
      public formBuilder: FormBuilder) {
       this.updateForm = this.formBuilder.group({
         COD_PERSONA: '',
-        ID: '',
-        PRIMERNOMBRE:'',
-        SEGUNDONOMBRE:'',
-       PRIMERAPELLIDO:'',
-        SEGUNDOAPELLIDO:'',
+        DNI: '',
+        NOMBRES:'',
+        APELLIDOS:'',
+        EDAD:'',
         SEXO:'',
         ESTADOCIVIL:'',
-        EDAD:'',
-        TIPO_CLIENTE:'',
+        DIRECCION:'',
+        TELEFONO:'',
+        CORREO:'',
         DESCRIPCION:'',
-        USUARIO_ADD:''
+        FEC_INGRESO:''
+
+
+
         });
+
+        this.createForm = this.formBuilder.group({
+          DNI: '',
+          NOMBRES: '',
+          APELLIDOS: '',
+          EDAD: '',
+          SEXO: '',
+          ESTADOCIVIL: '',
+          DIRECCION:'',
+          TELEFONO: '',
+          CORREO: '',
+          DESCRIPCION:''
+        });
+
       }
 
-      ngOnInit(): void {
-        this.ListarPersona();
-          }
-      ListarPersona(){
-        this.servicePeople.GetPersonaa().subscribe(res => {
-          console.log(res)
-          this.Perso =<any>res;
-        });
+
+  ngOnInit(): void {
+    this.ListarPersona();
       }
 
-      EditarPersona(id:number){
-        this.servicePeople.GetUnaPersona(id).subscribe(res => {
-          console.log(res)
-          this.updateForm.setValue({
-            COD_PERSONA: id,
-            ID: res['ID'],
-            PRIMERNOMBRE: res['PRIMERNOMBRE'],
-            SEGUNDONOMBRE: res['SEGUNDONOMBRE'],
-            PRIMERAPELLIDO: res['PRIMERAPELLIDO'],
-            SEGUNDOAPELLIDO: res['SEGUNDOAPELLIDO'],
-            SEXO: res['SEXO'],
-            ESTADOCIVIL: res['ESTADOCIVIL'],
-            EDAD: res['EDAD'],
-            TIPO_CLIENTE: res['TIPO_CLIENTE'],
-            DESCRIPCION: res['DESCRIPCION'],
-            USUARIO_ADD: res['USUARIO_ADD']
+  ListarPersona(){
+    this.servicePeople.GetPersonaa().subscribe(res => {
+      console.log(res)
+      this.Perso =<any>res;
+    });
+
+  }
+
+  EditarPersona(id:number){
+    this.servicePeople.GetUnaPersona(id).subscribe(res => {
+
+      console.log(res)
+      this.updateForm.setValue({
+        COD_PERSONA: id,
+        DNI: res['DNI'],
+        NOMBRES: res['NOMBRES'],
+        APELLIDOS: res['APELLIDOS'],
+        EDAD: res['EDAD'],
+        SEXO: res['SEXO'],
+        ESTADOCIVIL: res['ESTADOCIVIL'],
+        DIRECCION: res['DIRECCION'],
+        TELEFONO: res['TELEFONO'],
+        CORREO: res['CORREO'],
+        DESCRIPCION: res['DESCRIPCION'],
+        FEC_INGRESO: res['FEC_INGRESO']
 
 
-          });
-        });
-      }
 
-      onUpdate(): any {
-        this.servicePeople.updatePersona(this.updateForm.value)
-        .subscribe(() => {
-            console.log('Data updated successfully!')
-            Swal.fire('Se actualizo con exito',this.titulo,'success')
-            this.ListarPersona()
+      });
+    });
+  }
+
+  onUpdate(): any {
+    this.servicePeople.updatePersona(this.updateForm.value)
+    .subscribe(() => {
+        console.log('Data updated successfully!')
+        Swal.fire('Se actualizo con exito',this.titulo,'success')
+        this.ListarPersona()
 
 
-          }, (err) => {
-            console.log(err);
-            Swal.fire('Ocurrio problema',this.titulo,'error')
-        });
-      }
+      }, (err) => {
+        console.log(err);
+        Swal.fire('Ocurrio problema',this.titulo,'error')
+    });
+  }
+
+  nuevoPersona(): any {
+    this.servicePeople.crearPersona( this.createForm.value)
+    .subscribe(() => {
+        console.log('Data updated successfully!')
+        Swal.fire('Se Inserto con exito',this.titulo,'success')
+         this.ListarPersona();
+
+      }, (err) => {
+        console.log(err);
+        Swal.fire('Ocurrio problema',this.titulo,'error')
+    });
+  }
+
+
+  eliminarPersona(id:any, i:number):any{
+    if(window.confirm('Esta seguro de querer elimina el registro?')){
+      this.servicePeople.borrarPersona(id).subscribe(res=>{
+        if(res.affectedRows==1){
+          console.log("Se elimino el registro");
+          Swal.fire('Se elimino con exito',this.titulo,'success')
+
+          this.Perso.splice(i, 1);
+        }else{
+          console.log("No se pudo eliminar el registro o, no existe");
+          window.alert("error")
+        }
+      }, (err) => {
+        console.log(err);
+        Swal.fire('Ocurrio problema',this.titulo,'error')
+    });
+    }
+  }
+
+
+
+
+
+
 
 }
