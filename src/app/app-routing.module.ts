@@ -7,6 +7,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { TipoProductoComponent } from './modulo-inventario/tipo-producto/tipo-producto.component';
 import { ProductosComponent } from './modulo-inventario/productos/productos.component';
 import { InventarioComponent } from './modulo-inventario/inventario/inventario.component';
+import { logoComponent } from './dashboard/logo/logo.component';
 
 import { PlantasComponent } from './modulo-Appqr/Plantas/plantas.component';
 import { CodigoQrComponent } from './modulo-Appqr/CodigoQr/codigoqr.component';
@@ -23,6 +24,7 @@ const routes: Routes = [
   { path: 'panel',component: DashboardComponent,
 
    children:[
+    { path: '', component: logoComponent },
      { path: 'tipo-productos', component: TipoProductoComponent },
      { path: 'productos', component: ProductosComponent },
      {path: 'inventario', component: InventarioComponent },

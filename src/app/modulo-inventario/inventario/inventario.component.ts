@@ -10,9 +10,10 @@ import Swal from 'sweetalert2';
   styleUrls: ['./inventario.component.css']
 })
 export class InventarioComponent implements OnInit {
-  inv:any = [];
   productos:any = [];
+  inv:any = [];
   pro_inv:any = [];
+  prodinv:any = [];
   updateForm: FormGroup;
   createForm: FormGroup;
   titulo: string ='';
@@ -102,7 +103,11 @@ nuevoProductoInventario(): any {
 }
 
 nuevoProdInventarioModal(){
-  this.ListarProducto();
+  this.serviceInventario.GetProductosNoIventariados().subscribe(res => {
+    console.log(res)
+    this.prodinv =<any>res;
+  });
+  
 }
 
 

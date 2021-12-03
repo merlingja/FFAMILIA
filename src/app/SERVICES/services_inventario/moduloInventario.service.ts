@@ -159,6 +159,12 @@ crearProductoInventario(data: any): Observable<any> {
       catchError(this.handleError)
     )
 }
+//trae los productos que no estan en inventario
+GetProductosNoIventariados() {
+  let API_URL = `${this.REST_API}/lista-productos-no-inventario`;
+  return this.httpClient.get(API_URL , { headers: this.httpHeaders });
+
+}
 
 
 //----------------------------------
