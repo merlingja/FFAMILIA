@@ -90,11 +90,14 @@ export class TipoProductoComponent implements OnInit {
         }else{
           console.log("No se pudo eliminar el registro o, no existe");
           window.alert("error")
+          
         }
       }, (err) => {
         console.log(err);
         Swal.fire('Ocurrio problema',this.titulo,'error')
-    });
+    }
+    
+    );
     }
   }
 
