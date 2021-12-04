@@ -169,3 +169,10 @@ body {
   .fw-semibold { font-weight: 600; }
   .lh-tight { line-height: 1.25; }
   
+  .div_img{margin-top:0;
+    width: auto;text-align: center;
+  }
+  
+  .img_nav{
+  width: 100%;
+  }

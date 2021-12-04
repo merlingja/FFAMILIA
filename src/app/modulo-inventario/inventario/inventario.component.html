@@ -49,13 +49,11 @@
             <td>{{invt.TIP_PRODUCTO}}</td>
             <td>{{invt.DES_TIP_PRODUCTO}}</td>-->
 
-            <td><button type="button" class="btn btn-primary" style="margin-right: 5px;" data-bs-toggle="modal" data-bs-target="#modalEditarInventario"
+            <td  class="text-center"><button type="button" class="btn btn-primary" style="margin-right: 15px;" data-bs-toggle="modal" data-bs-target="#modalEditarInventario"
               (click)="EditarInventario(invt.COD_INVENTARIO)"
-              ><i class="fa fa-edit"> </i> </button></td>
+              ><i class="fa fa-edit"> </i> </button>
 
-            <td class="text-center">
-
-              <button type="button" class="btn btn-danger" data-bs-toggle="modal" 
+                <button type="button" class="btn btn-danger" data-bs-toggle="modal" 
                 (click)="eliminarProductoInventario(invt.COD_INVENTARIO, i)"
                 ><i class="fa fa-trash-alt"></i></button></td>
         </tr>

@@ -12,7 +12,7 @@
           <!--<th scope="col">TIPO</th>-->
             <th scope="col">Nombre</th>
             <th scope="col">Precio</th>
-            <th scope="col">Imagen</th>
+           <!--<th scope="col">Imagen</th>-->
             <th scope="col">Vida Util</th>
             <th scope="col">Descripcion</th>
             <th scope="col">Presentacion</th>
@@ -28,20 +28,20 @@
         <!--<td>{{prod.COD_TIP_PRODUCTO}}</td>-->
         <td>{{prod.NOMBRE_PRODUCTO}}</td>
         <td>{{prod.PRECIO}}</td>
-        <td>{{prod.FOTOGRAFIA}}</td>
+        <!--<td>{{prod.FOTOGRAFIA}}</td>-->
         <td>{{prod.VIDA_UTIL}}</td>
         <td>{{prod.DESCRIPCION}}</td>
         <td>{{prod.PRE_PRODUCTO}}</td>
         <td>{{prod.FEC_CADUCIDAD | date:"dd/MM/yyyy"}}</td>
         
-        <td><button type="button" class="btn btn-primary" style="margin-right: 7px;" data-bs-toggle="modal" data-bs-target="#modalEditarProducto"
+        <td  class="text-center"><button type="button" class="btn btn-primary" style="margin-right: 15px;" data-bs-toggle="modal" data-bs-target="#modalEditarProducto"
           (click)="EditarProducto(prod.COD_PRODUCTO)"
-          ><i class="fa fa-edit"> </i> </button></td>
+          ><i class="fa fa-edit"> </i> </button>
 
-          <td><button type="button" class="btn btn-danger" data-bs-toggle="modal" 
+          <button type="button" class="btn btn-danger" data-bs-toggle="modal" 
                 (click)="eliminarProducto(prod.COD_PRODUCTO, i)"
                 ><i class="fa fa-trash-alt"> </i> </button></td>
-        <td class="text-center">
+        
     </tr>
   
   </tbody>
