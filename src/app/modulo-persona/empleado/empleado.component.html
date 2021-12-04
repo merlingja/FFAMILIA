@@ -26,7 +26,7 @@
         </thead>
         <tbody>
             <tr>
-                <tr *ngFor="let emplo of Employee,  let i=index">
+                <tr *ngFor="let emplo of Employee;  let i=index">
                     <th scope="row">{{i+1}}</th>
                     <td>{{emplo.DNI}}</td>
                     <td>{{emplo.NOMBRES}}</td>
@@ -50,7 +50,7 @@
 
     <!---Aqui la modal para actualizar EMPLEADO-->
     <div class="modal fade" id="modalEditarEmpleado" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
+        <div class="modal-dialog modal-dialog-scrollable">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLabel">ACTUALIZAR INFORMACION</h5>
@@ -101,10 +101,9 @@
                             </div>
 
 
-
-                            <div>
-                                <label for={{Employee.FEC_INICIO}}>Escriba su cumpleaños:</label>
-                                <input type="date" id={{Employee.FEC_INICIO}} name="bday">
+                            <div class="form-group">
+                                <label>Fecha Inicio de Contrato</label>
+                                <input class="form-control" type="date" formControlName="FEC_INICIO" required>
                             </div>
 
                             <br>
@@ -127,7 +126,7 @@
     <!---Aqui la modal para Insertar Nuevo Empleado-->
 
     <div class="modal fade" id="nuevoEmpleado" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
+        <div class="modal-dialog modal-dialog-scrollable">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLabel">AGREGAR NUEVO</h5>
@@ -178,9 +177,8 @@
                                 </div>
 
                                 <div class="form-group">
-                                    <label for="FEC_INICIO">Fecha Inicio Contrato</label>
-                                    <input type="date" id="FEC_INICIO" name="FEC_INICIO" min="2021-01-01" max="2030-12-31">
-
+                                    <label>Fecha Inicio de Contrato</label>
+                                    <input class="form-control" type="date" formControlName="FEC_INICIO" required>
                                 </div>
 
 

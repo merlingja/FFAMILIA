@@ -59,7 +59,7 @@
     <!---Aqui la modal para actualizar PERSONA-->
     <div class="modal fade" id="modalEditarPersona" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
 
-        <div class="modal-dialog">
+        <div class="modal-dialog modal-dialog-scrollable">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLabel">ACTUALIZAR INFORMACION</h5>
@@ -152,7 +152,7 @@
 
     <div class="modal fade" id="nuevoPersona" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
 
-        <div class="modal-dialog">
+        <div class="modal-dialog modal-dialog-scrollable">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLabel">AGREGAR NUEVO</h5>
@@ -163,6 +163,7 @@
                 <div class="modal-body">
                     <div class="row justify-content-center mt-5">
                         <div class="col-md-4">
+
                             <form [formGroup]="createForm" (ngSubmit)="nuevoPersona()">
 
 
