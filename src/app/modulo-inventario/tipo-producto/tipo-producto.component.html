@@ -1,77 +1,7 @@
 <div class="table-responsive" style="box-shadow: 3px 8px 10px #607080; background-color:#fff; margin:25px 25px 25px">
     <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 px-md-4" style="background-color: #fff; padding: 10px; border-bottom: 1px solid #cdcd;">
-<<<<<<< Updated upstream
         <h4 style="color:#607080">Tipo de Producto</h4>
         <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#nuevoTipoProducto"><i class="fa fa-plus"></i> Nuevo</button>
-=======
-      <h4 style="color:#607080">Tipo de Producto</h4>
-      <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="##nuevoTipoProducto" ><i class="fa fa-plus"></i> Nuevo</button>
-      </div>
-    
-  
-  <table style="margin:10px" class="table table-striped table-sm">
-    <thead>
-      <tr>
-        <th scope="col">Id</th>
-              <th scope="col">Tipo Producto</th>
-              <th scope="col">Cantidad</th>
-              <th scope="col">Descripcion</th>
-              <th class="text-center" scope="col">Accion</th> 
-              </tr>
-    </thead>
-    <tbody>
-    
-        <tr *ngFor="let tipos of tipoProductos; let i=index">
-          <!--<th scope="row">{{tipos.COD_TIP_PRODUCTO}}</th>-->
-          <th scope="row">{{i+1}}</th>
-            <td>{{tipos.TIP_PRODUCTO}}</td>
-            <td>{{tipos.CANTIDAD}}</td>
-            <td>{{tipos.DES_TIP_PRODUCTO}}</td>                  
-
-            <td class="text-center"> <button type="button" class="btn btn-primary" style="margin-right: 15px;" data-bs-toggle="modal" data-bs-target="#modalEditarTipoProducto"
-              (click)="EditarTipoProducto(tipos.COD_TIP_PRODUCTO)"
-              ><i class="fa fa-edit"></i></button>
-
-              <button type="button" class="btn btn-danger" data-bs-toggle="modal" 
-                (click)="eliminarTipoProducto(tipos.COD_TIP_PRODUCTO, i)"
-                ><i class="fa fa-trash-alt"></i></button></td>
-           
-                </tr>
-    
-    </tbody>
-  </table>
-
-<!---Aqui la modal para actualizar tipo de PRODUCTO-->
-  <div class="modal fade" id="modalEditarTipoProducto" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-scrollable">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Editar tipo de producto</h5>
-         <!--<button (click)= "modalCancelar()" type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>-->
-        </div>
-        <div class="modal-body">
-          <!--<router-outlet name="outlet_modal_editar"></router-outlet>-->
-          <form [formGroup]="updateForm" (ngSubmit)= "onUpdate()" >
-              
-            <div class="form-group">
-              <label>Tipo Producto</label>
-              <input class="form-control" type="text" formControlName="tip_producto" required>
-            </div>
-    
-             
-            <div class="form-group">
-              <label>Descripcion</label>
-              <!--<input class="form-control" type="textarea" formControlName="des_tip_producto" required>-->
-              <textarea formControlName="des_tip_producto" class="form-control" required></textarea>
-            </div>
-  <br>
-           <div class="form-group">
-              <button class="btn btn-primary btn-block" type="submit">Editar</button>
-            </div>
-          </form>
-          
-
->>>>>>> Stashed changes
 
     </div>
 
