@@ -165,7 +165,17 @@ GetProductosNoIventariados() {
   return this.httpClient.get(API_URL , { headers: this.httpHeaders });
 
 }
-
+//Eliminar producto en inventario
+borrarProductoInventario (id: any): Observable<any> {
+  let API_URL = `${this.REST_API}/borrar_inventario/:cod_inventario/:cod_producto${id}`;
+  return this.httpClient.delete(API_URL, { headers: this.httpHeaders })
+    .pipe(map((res: any) => {
+      console.log(res.affectedRows)
+      return res;
+    }),
+      catchError(this.handleError)
+    )
+}
 
 //----------------------------------
 

@@ -14,6 +14,7 @@ export class InventarioComponent implements OnInit {
   inv:any = [];
   pro_inv:any = [];
   prodinv:any = [];
+  borrarInv:any = [];
   updateForm: FormGroup;
   createForm: FormGroup;
   titulo: string ='';
@@ -108,6 +109,28 @@ nuevoProdInventarioModal(){
     this.prodinv =<any>res;
   });
   
+}
+
+eliminarProductoInventario(id:any, i:number):any{
+  if(window.confirm('Esta seguro de querer elimina el registro?')){
+    this.serviceInventario.borrarProductoInventario(id).subscribe(res=>{
+      if(res.affectedRows==1){
+        console.log("Se elimino el registro");
+        Swal.fire('Se elimino con exito',this.titulo,'success')
+
+        this.borrarInv.splice(i, 1);
+      }else{
+        console.log("No se pudo eliminar el registro o, no existe");
+        window.alert("error")
+        
+      }
+    }, (err) => {
+      console.log(err);
+      Swal.fire('Ocurrio problema',this.titulo,'error')
+  }
+  
+  );
+  }
 }
 
 
