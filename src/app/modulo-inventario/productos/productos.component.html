@@ -1,190 +1,185 @@
- <div class="table-responsive" style="box-shadow: 3px 8px 10px #607080; background-color:#fff; margin:25px 25px 25px">
-  <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 px-md-4" style="background-color: #fff; padding: 10px; border-bottom: 1px solid #cdcd;">
-    <h4 style="color:#607080"> Productos</h4>
-    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#nuevoTipoProducto" ><i class="fa fa-plus"></i> Nuevo</button>
+<div class="table-responsive" style="box-shadow: 3px 8px 10px #607080; background-color:#fff; margin:25px 25px 25px">
+    <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 px-md-4" style="background-color: #fff; padding: 10px; border-bottom: 1px solid #cdcd;">
+        <h4 style="color:#607080"> Productos</h4>
+        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#nuevoTipoProducto"><i class="fa fa-plus"></i> Nuevo</button>
 
-   </div>
-
-<table style="margin:10px" class="table table-striped table-sm">
-  <thead>
-    <tr>
-      <th scope="col">Id</th>
-          <!--<th scope="col">TIPO</th>-->
-            <th scope="col">Nombre</th>
-            <th scope="col">Precio</th>
-           <!--<th scope="col">Imagen</th>-->
-            <th scope="col">Vida Util</th>
-            <th scope="col">Descripcion</th>
-            <th scope="col">Presentacion</th>
-            <th scope="col">Vencimiento</th>
-            <th class="text-center" scope="col">Accion </th> 
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <tr *ngFor="let prod of products; let i=index">
-        <!--<th scope="row">{{prod.COD_PRODUCTO}}</th>-->
-        <th scope="row">{{i+1}}</th>
-        <!--<td>{{prod.COD_TIP_PRODUCTO}}</td>-->
-        <td>{{prod.NOMBRE_PRODUCTO}}</td>
-        <td>{{prod.PRECIO}}</td>
-        <!--<td>{{prod.FOTOGRAFIA}}</td>-->
-        <td>{{prod.VIDA_UTIL}}</td>
-        <td>{{prod.DESCRIPCION}}</td>
-        <td>{{prod.PRE_PRODUCTO}}</td>
-        <td>{{prod.FEC_CADUCIDAD | date:"dd/MM/yyyy"}}</td>
-        
-        <td  class="text-center"><button type="button" class="btn btn-primary" style="margin-right: 15px;" data-bs-toggle="modal" data-bs-target="#modalEditarProducto"
-          (click)="EditarProducto(prod.COD_PRODUCTO)"
-          ><i class="fa fa-edit"> </i> </button>
-
-          <button type="button" class="btn btn-danger" data-bs-toggle="modal" 
-                (click)="eliminarProducto(prod.COD_PRODUCTO, i)"
-                ><i class="fa fa-trash-alt"> </i> </button></td>
-        
-    </tr>
-  
-  </tbody>
-</table>
-
-<!---Aqui la modal para actualizar un producto----------------------------->
-<div class="modal fade" id="modalEditarProducto" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-scrollable">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Editar Producto</h5>
-        </div>
-
-      <div class="modal-body">
-         <form [formGroup]="updateForm" (ngSubmit)= "onUpdate()" >
-            
-          <div class="form-group">
-            <label>id Tipo producto</label>
-            <input class="form-control" type="text" formControlName="cod_tip_producto" required>
-          </div>
-  
-           
-          <div class="form-group">
-            <label>Nombre producto</label>
-            <input class="form-control" type="textarea" formControlName="nombre_producto" required>
-          </div>
-
-          <div class="form-group">
-            <label>Precio</label>
-            <input class="form-control" type="text" formControlName="precio" required>
-          </div>
-  
-           
-          <div class="form-group">
-            <label>Fotografia</label>
-            <input class="form-control" type="textarea" formControlName="fotografia" required>
-          </div>
-
-          <div class="form-group">
-            <label>Vida Util</label>
-            <input class="form-control" type="text" formControlName="vida_util" required>
-          </div>
-  
-           
-          <div class="form-group">
-            <label>Descripcion</label>
-            <textarea formControlName="descripcion" class="form-control" required></textarea>
-          </div>
-
-          <div class="form-group">
-            <label>Presentacion</label>
-            <input class="form-control" type="text" formControlName="pre_producto" required>
-          </div>
-  
-           
-          <div class="form-group">
-            <label>vencimiento</label>
-            <input class="form-control" type="date" formControlName="fec_caducidad" required>
-          </div>
-         <br>
-         <div class="form-group">
-            <button class="btn btn-primary btn-block" type="submit">Editar</button>
-          </div>
-        </form>
-        
-
-
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancelar</button>
-        
-      </div>
     </div>
-  </div>
-</div>
 
-<!---Aqui la modal para insertart un producto----------------------------->
-<div class="modal fade" id="nuevoProducto" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-scrollable">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Agregar nuevo producto</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" ></button>
-      </div>
-      <div class="modal-body">
-  
+    <table style="margin:10px" class="table table-striped table-sm">
+        <thead>
+            <tr>
+                <th scope="col">Id</th>
+                <!--<th scope="col">TIPO</th>-->
+                <th scope="col">Nombre</th>
+                <th scope="col">Precio</th>
+                <!--<th scope="col">Imagen</th>-->
+                <th scope="col">Vida Útil</th>
+                <th scope="col">Descripción</th>
+                <th scope="col">Presentación</th>
+                <th scope="col">Vencimiento</th>
+                <th class="text-center" scope="col">Acción </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <tr *ngFor="let prod of products; let i=index">
+                    <!--<th scope="row">{{prod.COD_PRODUCTO}}</th>-->
+                    <th scope="row">{{i+1}}</th>
+                    <!--<td>{{prod.COD_TIP_PRODUCTO}}</td>-->
+                    <td>{{prod.NOMBRE_PRODUCTO}}</td>
+                    <td>{{prod.PRECIO}}</td>
+                    <!--<td>{{prod.FOTOGRAFIA}}</td>-->
+                    <td>{{prod.VIDA_UTIL}}</td>
+                    <td>{{prod.DESCRIPCION}}</td>
+                    <td>{{prod.PRE_PRODUCTO}}</td>
+                    <td>{{prod.FEC_CADUCIDAD | date:"dd/MM/yyyy"}}</td>
 
-    <form [formGroup]="createForm" (ngSubmit)="nuevoProducto()">
-      <div class="form-group">
-        <label>Tipo de producto</label>
-        
-        <select formControlName="cod_tip_producto" class="form-control" >
+                    <td class="text-center"><button type="button" class="btn btn-primary" style="margin-right: 15px;" data-bs-toggle="modal" data-bs-target="#modalEditarProducto" (click)="EditarProducto(prod.COD_PRODUCTO)"><i class="fa fa-edit"> </i> </button>
+
+                        <button type="button" class="btn btn-danger" data-bs-toggle="modal" (click)="eliminarProducto(prod.COD_PRODUCTO, i)"><i class="fa fa-trash-alt"> </i> </button></td>
+
+                </tr>
+
+        </tbody>
+    </table>
+
+    <!---Aqui la modal para actualizar un producto----------------------------->
+    <div class="modal fade" id="modalEditarProducto" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-scrollable">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Editar Producto</h5>
+                </div>
+
+                <div class="modal-body">
+                    <form [formGroup]="updateForm" (ngSubmit)="onUpdate()">
+
+                        <div class="form-group">
+                            <label>ID Tipo Producto</label>
+                            <input class="form-control" type="text" formControlName="cod_tip_producto" required>
+                        </div>
+
+
+                        <div class="form-group">
+                            <label>Nombre Producto</label>
+                            <input class="form-control" type="textarea" formControlName="nombre_producto" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Precio</label>
+                            <input class="form-control" type="text" formControlName="precio" required>
+                        </div>
+
+
+                        <div class="form-group">
+                            <label>Fotografía</label>
+                            <input class="form-control" type="textarea" formControlName="fotografia" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Vida Útil</label>
+                            <input class="form-control" type="text" formControlName="vida_util" required>
+                        </div>
+
+
+                        <div class="form-group">
+                            <label>Descripción</label>
+                            <textarea formControlName="descripcion" class="form-control" required></textarea>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Presentación</label>
+                            <input class="form-control" type="text" formControlName="pre_producto" required>
+                        </div>
+
+
+                        <div class="form-group">
+                            <label>Vencimiento</label>
+                            <input class="form-control" type="date" formControlName="fec_caducidad" required>
+                        </div>
+                        <br>
+                        <div class="form-group">
+                            <button class="btn btn-primary btn-block" type="submit">Editar</button>
+                        </div>
+                    </form>
+
+
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancelar</button>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!---Aqui la modal para insertart un producto----------------------------->
+    <div class="modal fade" id="nuevoProducto" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-scrollable">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Agregar Nuevo Producto</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+
+
+                    <form [formGroup]="createForm" (ngSubmit)="nuevoProducto()">
+                        <div class="form-group">
+                            <label>Tipo de Producto</label>
+
+                            <select formControlName="cod_tip_producto" class="form-control">
           <option value="{{tipo.COD_TIP_PRODUCTO}}" *ngFor="let tipo of tipoProductos"
           >{{tipo.TIP_PRODUCTO}}</option> </select>
-     
-      </div>
 
-      <div class="form-group">
-        <label>Nombre Producto</label>
-        <input class="form-control" type="text" formControlName="nombre_producto" required>
-      </div>
+                        </div>
 
-      <div class="form-group">
-        <label>Precio</label>
-        <input class="form-control" type="text" formControlName="precio" required>
-      </div>
+                        <div class="form-group">
+                            <label>Nombre Producto</label>
+                            <input class="form-control" type="text" formControlName="nombre_producto" required>
+                        </div>
 
-      <div class="form-group">
-        <label>Imagen</label>
-        <input class="form-control" type="text" formControlName="fotografia" required>
-        
+                        <div class="form-group">
+                            <label>Precio</label>
+                            <input class="form-control" type="text" formControlName="precio" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Imagen</label>
+                            <input class="form-control" type="text" formControlName="fotografia" required>
+
+                        </div>
+
+                        <div class="form-group">
+                            <label>Vida Útil</label>
+                            <input class="form-control" type="text" formControlName="vida_util" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Presentación</label>
+                            <input class="form-control" type="text" formControlName="pre_producto" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Vencimiento</label>
+                            <input class="form-control" type="date" formControlName="fec_caducidad" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Descripción</label>
+                            <textarea formControlName="descripcion" class="form-control" required></textarea>
+                        </div>
+                        <br>
+
+                        <div class="form-group">
+                            <button class="btn btn-success btn-block" type="submit">Guardar</button>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancelar</button>
+                </div>
+            </div>
         </div>
-
-      <div class="form-group">
-        <label>Vida Util</label>
-        <input class="form-control" type="text" formControlName="vida_util" required>
-      </div>
-
-      <div class="form-group">
-        <label>Presentacion</label>
-        <input class="form-control" type="text" formControlName="pre_producto" required>
-      </div>
-
-      <div class="form-group">
-        <label>vencimiento</label>
-        <input class="form-control" type="date" formControlName="fec_caducidad" required>
-      </div>
-
-       <div class="form-group">
-        <label>Descripcion</label>
-        <textarea formControlName="descripcion" class="form-control" required></textarea>
-      </div>
-      <br>
-
-      <div class="form-group">
-        <button class="btn btn-success btn-block" type="submit">Guardar</button>
-      </div>
-    </form>
-        </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-danger" data-bs-dismiss="modal" >Cancelar</button>
-      </div>
     </div>
-  </div>
-</div>
-

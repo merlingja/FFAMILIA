@@ -1,162 +1,159 @@
-
 <div class="table-responsive" style="box-shadow: 3px 8px 10px #607080; background-color:#fff; margin:25px 25px 25px">
-  <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 px-md-4" style="background-color: #fff; padding: 10px; border-bottom: 1px solid #cdcd;">
-    <h4 style="color:#607080">Producto en Inventario</h4>
-    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#nuevoTipoProducto" ><i class="fa fa-plus"></i> Nuevo</button>
+    <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 px-md-4" style="background-color: #fff; padding: 10px; border-bottom: 1px solid #cdcd;">
+        <h4 style="color:#607080">Producto en Inventario</h4>
+        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#nuevoTipoProducto"><i class="fa fa-plus"></i> Nuevo</button>
 
-   </div>
-  
+    </div>
 
-<table style="margin:10px" class="table table-striped table-sm">      <thead>
-        <tr>
-          <th scope="col">Id</th>
-                <!--<th scope="col">cod producto</th> --> 
+
+    <table style="margin:10px" class="table table-striped table-sm">
+        <thead>
+            <tr>
+                <th scope="col">Id</th>
+                <!--<th scope="col">cod producto</th> -->
                 <th scope="col">Nombre</th>
-                <th scope="col">Precio</th>                         
+                <th scope="col">Precio</th>
                 <th scope="col">Existencia</th>
-                <th scope="col">Descripcion</th>
-                <th scope="col">Introduccion</th>
-                <th scope="col">Modificacion</th>
-                
+                <th scope="col">Descripción</th>
+                <th scope="col">Introducción</th>
+                <th scope="col">Modificación</th>
+
                 <!--<th scope="col">COD_TIP_PRODUCTO</th>-->
-                
+
                 <!--<th scope="col">FOTOGRAFIA</th>-->
                 <!--<th scope="col">VENCIMIENTO</th>
                 <th scope="col">DESCRIPCION</th>
                 <th scope="col">PRESENTACION</th>-->
-                <th class="text-center" scope="col">Accion</th> 
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <tr *ngFor="let invt of inv; let i=index">
-            <th scope="row">{{invt.COD_INVENTARIO}}</th>
-            <!--<td>{{invt.COD_PRODUCTO}}</td>-->
-            <td>{{invt.NOMBRE_PRODUCTO}}</td>
-            <td>{{invt.PRECIO}}</td>
-            <td>{{invt.CAN_EXISTENCIA}}</td>
-            <td>{{invt.DESCRIPCION}}</td>
-            <td>{{invt.FEC_INTRODUCCION | date:"dd/MM/yyyy"}}</td>
-            <td>{{invt.FEC_MODIFICACION | date:"dd/MM/yyyy"}}</td>
-            
-            <!--<td>{{invt.COD_TIP_PRODUCTO}}</td>-->
-            
-            <!--<td>{{invt.FOTOGRAFIA}}</td>-->
-            <!--<td>{{invt.VIDA_UTIL}}</td
+                <th class="text-center" scope="col">Acción</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <tr *ngFor="let invt of inv; let i=index">
+                    <th scope="row">{{invt.COD_INVENTARIO}}</th>
+                    <!--<td>{{invt.COD_PRODUCTO}}</td>-->
+                    <td>{{invt.NOMBRE_PRODUCTO}}</td>
+                    <td>{{invt.PRECIO}}</td>
+                    <td>{{invt.CAN_EXISTENCIA}}</td>
+                    <td>{{invt.DESCRIPCION}}</td>
+                    <td>{{invt.FEC_INTRODUCCION | date:"dd/MM/yyyy"}}</td>
+                    <td>{{invt.FEC_MODIFICACION | date:"dd/MM/yyyy"}}</td>
+
+                    <!--<td>{{invt.COD_TIP_PRODUCTO}}</td>-->
+
+                    <!--<td>{{invt.FOTOGRAFIA}}</td>-->
+                    <!--<td>{{invt.VIDA_UTIL}}</td
             <td>{{invt.DESCRIPCION}}</td>
             <td>{{invt.PRE_PRODUCTO}}</td>
             <td>{{invt.FEC_CADUCIDAD}}</td>
             <td>{{invt.TIP_PRODUCTO}}</td>
             <td>{{invt.DES_TIP_PRODUCTO}}</td>-->
 
-            <td  class="text-center"><button type="button" class="btn btn-primary" style="margin-right: 15px;" data-bs-toggle="modal" data-bs-target="#modalEditarInventario"
-              (click)="EditarInventario(invt.COD_INVENTARIO)"
-              ><i class="fa fa-edit"> </i> </button>
+                    <td class="text-center"><button type="button" class="btn btn-primary" style="margin-right: 15px;" data-bs-toggle="modal" data-bs-target="#modalEditarInventario" (click)="EditarInventario(invt.COD_INVENTARIO)"><i class="fa fa-edit"> </i> </button>
 
-                <button type="button" class="btn btn-danger" data-bs-toggle="modal" 
-                (click)="eliminarProductoInventario(invt.COD_INVENTARIO, i)"
-                ><i class="fa fa-trash-alt"></i></button></td>
-        </tr>
-      
-      </tbody>
+                        <button type="button" class="btn btn-danger" data-bs-toggle="modal" (click)="eliminarProductoInventario(invt.COD_INVENTARIO, i)"><i class="fa fa-trash-alt"></i></button></td>
+                </tr>
+
+        </tbody>
     </table>
 
     <!---Aqui la modal para actualizar o editar en inventario-------------------------------------------------------------------------------->
-  <div class="modal fade" id="modalEditarInventario" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-scrollable">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Editar producto en inventario</h5>
-       
-      </div>
-      <div class="modal-body">
-        
-        <form [formGroup]="updateForm" (ngSubmit)= "onUpdate()" >
-            
-          <div class="form-group">
-            <h3>{{pro_inv.NOMBRE_PRODUCTO}}</h3>
-            <p>{{pro_inv.DESCRIPCION}}</p>
-            <p style="color:#607080">Fecha de Introduccion: {{pro_inv.FEC_INTRODUCCION |date:"dd/MM/yyyy"}}</p>
-          </div>
+    <div class="modal fade" id="modalEditarInventario" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-scrollable">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Editar Producto en Inventario</h5>
 
-          <div class="form-group">
-            <h3 style="color:#808080">Productos en Existencia <i class="fa fa-clipboard"> </i></h3>
-            <h3 style="color:green">{{pro_inv.CAN_EXISTENCIA}}
-            </h3>
-          </div><hr>
+                </div>
+                <div class="modal-body">
 
-          <h6><i class="fa fa-cubes"></i> Puede registrar nuevas entras o salidas de productos al inventario</h6> 
+                    <form [formGroup]="updateForm" (ngSubmit)="onUpdate()">
 
-          <div class="form-group">
-            <label>Seleccione Tipo de Transaccion</label>
-             <select formControlName="tip_transaccion" class="form-control" required placeholder="Seleccione">
+                        <div class="form-group">
+                            <h3>{{pro_inv.NOMBRE_PRODUCTO}}</h3>
+                            <p>{{pro_inv.DESCRIPCION}}</p>
+                            <p style="color:#607080">Fecha de Introducción: {{pro_inv.FEC_INTRODUCCION |date:"dd/MM/yyyy"}}</p>
+                        </div>
+
+                        <div class="form-group">
+                            <h3 style="color:#808080">Productos en Existencia <i class="fa fa-clipboard"> </i></h3>
+                            <h3 style="color:green">{{pro_inv.CAN_EXISTENCIA}}
+                            </h3>
+                        </div>
+                        <hr>
+
+                        <h6><i class="fa fa-cubes"></i> Puede registrar nuevas entras o salidas de productos al inventario</h6>
+
+                        <div class="form-group">
+                            <label>Seleccione Tipo de Transacción</label>
+                            <select formControlName="tip_transaccion" class="form-control" required placeholder="Seleccione">
               <option value="compra">Compra</option>
               <option value="venta">Venta</option>
             </select>
-          </div><br>
-           
-          <div class="form-group">
-            <label>Cantidad de ingreso/salida</label>
-            <input class="form-control" type="text" formControlName="can_existencia" required placeholder="Ingrese la cantidad">
-          </div>
-          <br><br>
-         <div class="form-group">
-            <button class="btn btn-primary btn-block" type="submit">Guardar Cambios</button>
-          </div>
-        </form>
-        
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancelar</button>
+                        </div><br>
+
+                        <div class="form-group">
+                            <label>Cantidad de Ingreso/Salida</label>
+                            <input class="form-control" type="text" formControlName="can_existencia" required placeholder="Ingrese la cantidad">
+                        </div>
+                        <br><br>
+                        <div class="form-group">
+                            <button class="btn btn-primary btn-block" type="submit">Guardar Cambios</button>
+                        </div>
+                    </form>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancelar</button>
+                </div>
+            </div>
         </div>
     </div>
-  </div>
-</div>
 
-<!---Aqui la modal para Insertar un producto en inventario-->
+    <!---Aqui la modal para Insertar un producto en inventario-->
 
-<div class="modal fade" id="nuevoProductoInventario" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-scrollable"> <!--modifiquen esta linea en su componente para el scroll-->
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Agregar producto en Inventario</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" ></button>
-      </div>
-      <div class="modal-body">
-  
+    <div class="modal fade" id="nuevoProductoInventario" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-scrollable">
+            <!--modifiquen esta linea en su componente para el scroll-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Agregar Producto en Inventario</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
 
-    <form [formGroup]="createForm" (ngSubmit)="nuevoProductoInventario()">
-      <div class="form-group">
-        <label>id producto</label>
-        
-        <select formControlName="cod_producto" class="form-control" >
+
+                    <form [formGroup]="createForm" (ngSubmit)="nuevoProductoInventario()">
+                        <div class="form-group">
+                            <label>ID Producto</label>
+
+                            <select formControlName="cod_producto" class="form-control">
           <option value="{{producto.COD_PRODUCTO}}" *ngFor="let producto of prodinv">
             {{producto.NOMBRE_PRODUCTO}}</option> </select>
-     
-      </div>
 
-      <div class="form-group">
-        <label>Existencia</label>
-        <input class="form-control" type="text" formControlName="can_existencia" required>
-      </div>
+                        </div>
 
-            
-      <div class="form-group">
-        <label>fecha Introduccion</label>
-        <input class="form-control" type="date" formControlName="fec_introduccion" required>
-      </div>
+                        <div class="form-group">
+                            <label>Existencia</label>
+                            <input class="form-control" type="text" formControlName="can_existencia" required>
+                        </div>
 
-       <br>
 
-      <div class="form-group">
-        <button class="btn btn-success btn-block" type="submit">Guardar</button>
-      </div>
-    </form>
+                        <div class="form-group">
+                            <label>Fecha Introducción</label>
+                            <input class="form-control" type="date" formControlName="fec_introduccion" required>
+                        </div>
+
+                        <br>
+
+                        <div class="form-group">
+                            <button class="btn btn-success btn-block" type="submit">Guardar</button>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancelar</button>
+                </div>
+            </div>
         </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-danger" data-bs-dismiss="modal" >Cancelar</button>
-      </div>
     </div>
-  </div>
-</div>
-
