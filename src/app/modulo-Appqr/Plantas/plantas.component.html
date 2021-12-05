@@ -1,26 +1,30 @@
-<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-    <h3 style="color:#607080" class="h3">Plantas</h3>
-   </div>
+<div class="table-responsive" style="box-shadow: 3px 8px 10px #607080; background-color:#fff; margin:25px 25px 25px">
+  <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 px-md-4" style="background-color: #fff; padding: 10px; border-bottom: 1px solid #cdcd;">
+      <h4 style="color:#607080">Plantas</h4>
+      <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#nuevaPlanta"><i class="fa fa-plus"></i> Nuevo</button>
+
+  </div>
   
-  <div class="table-responsive">
   
-  <table class="table table-striped table-sm">
+  
+  <table style="margin:10px" class="table table-striped table-sm">
     <thead>
       <tr>
         <th scope="col">COD</th>
-              <th scope="col">NOMBRE</th>
+              <th scope="col">Nombre</th>
               <th scope="col">Nombre Cientifico</th>
-              <th scope="col">CLASE</th>
-              <th scope="col">FAMILIA</th>
-              <th scope="col">ESPECIE</th>
-              <th scope="col">DESCRIPCION</th>
+              <th scope="col">Clase</th>
+              <th scope="col">Familia</th>
+              <th scope="col">Especie</th>
+              <th scope="col">Descripción</th>
               <th scope="col">FECHA</th>
+              <th class="text-center" scope="col">Acción</th>
               </tr>
     </thead>
     <tbody>
       <tr>
-        <tr *ngFor="let plantas of Plantas">
-          <th scope="row">{{plantas.COD_PLANTA}}</th>
+        <tr *ngFor="let plantas of Plantas; let i=index">
+          <th scope="row">{{i+1}}</th>
             <td>{{plantas.NOM_PLANTA}}</td>
             <td>{{plantas.NOM_CIENTIFICO}}</td>
             <td>{{plantas.CLASE}}</td>
@@ -28,8 +32,134 @@
             <td>{{plantas.ESPECIE}}</td>
             <td>{{plantas.DES_PLANTA}}</td>
             <td>{{plantas.FEC_REGISTRO}}</td>
-            <td class="text-center">
+            <td class="text-center"> <button type="button" class="btn btn-primary" style="margin-right: 15px;" data-bs-toggle="modal" data-bs-target="#modalEditarPlantas" (click)="EditarPlantas(plantas.COD_PLANTA)"><i class="fa fa-edit"></i></button>
+              <button type="button" class="btn btn-danger" data-bs-toggle="modal" (click)="eliminarPlantas(plantas.COD_PLANTA, i)"><i class="fa fa-trash-alt"></i></button></td>
       </tr>
     
     </tbody>
   </table>
+  <!---Aqui la modal para actualizar PLanta-->
+  <div class="modal fade" id="modalEditarPlantas" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-scrollable">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Editar Registro</h5>
+                <!--<button (click)= "modalCancelar()" type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>-->
+            </div>
+            <div class="modal-body">
+                <!--<router-outlet name="outlet_modal_editar"></router-outlet>-->
+                <form [formGroup]="updateForm" (ngSubmit)="onUpdate()">
+
+                    <div class="form-group">
+                        <label>Nombre</label>
+                        <input class="form-control" type="text" formControlName="nom_planta" required>
+                    </div>
+
+                    <div class="form-group">
+                       <label>Nombre Cientifico</label>
+                        <input class="form-control" type="text" formControlName="nom_cientifico" required>
+                    </div>
+                    <div class="form-group">
+                      <label>Clase</label>
+                      <input class="form-control" type="text" formControlName="clase" required>
+                    </div>
+                    <div class="form-group">
+                      <label>Familia</label>
+                      <input class="form-control" type="text" formControlName="familia" required>
+                    </div>
+                    <div class="form-group">
+                      <label>Especie</label>
+                      <input class="form-control" type="text" formControlName="especie" required>
+                    </div>
+                      
+                    <div class="form-group">
+                        <label>Descripción</label>
+                        <!--<input class="form-control" type="textarea" formControlName="des_tip_producto" required>-->
+                        <textarea formControlName="des_planta" class="form-control" required></textarea>
+                    </div>
+                    <br>
+                    <div class="form-group">
+                        <button class="btn btn-primary btn-block" type="submit">Editar</button>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancelar</button>
+                <!--<button type="button" class="btn btn-primary">Salvar</button>-->
+            </div>
+        </div>
+    </div>
+</div>
+
+<!---Aqui la modal para Insertar tipo de PRODUCTO-->
+
+<div class="modal fade" id="nuevaPlanta" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-scrollable">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Agregar Nueva Planta</h5>
+
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+
+            </div>
+            <div class="modal-body">
+
+                <form [formGroup]="createForm" (ngSubmit)="nuevaPlanta()">
+
+                    <div class="form-group">
+                        <label>Nombre</label>
+                        <input class="form-control" type="text" formControlName="nombre" required>
+
+                    </div>
+
+                    <br>
+                    <div class="form-group">
+                      <label>Nombre Cientifico</label>
+                      <input class="form-control" type="text" formControlName="nombre_cientifico" required>
+
+                     </div>
+
+                     <br>
+                     <div class="form-group">
+                      <label>Clase</label>
+                      <input class="form-control" type="text" formControlName="clases" required>
+
+                     </div>
+
+                     <br>
+                     <div class="form-group">
+                      <label>Familia</label>
+                      <input class="form-control" type="text" formControlName="familias" required>
+
+                    </div>
+
+                     <br>
+
+                     <div class="form-group">
+                      <label>Especie</label>
+                      <input class="form-control" type="text" formControlName="especies" required>
+
+                    </div>
+
+                    <br>
+
+                    
+                    <div class="form-group">
+                        <label>Descripción</label>
+                        <!--<input class="form-control" type="textarea" formControlName="descripcion" required>-->
+                        <textarea formControlName="descripcion" class="form-control" required></textarea>
+                    </div>
+                    <br>
+
+                    <div class="form-group">
+                        <button class="btn btn-success btn-block" type="submit">Guardar</button>
+                    </div>
+
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancelar</button>
+            </div>
+        </div>
+    </div>
+</div>
