@@ -1,27 +1,113 @@
-<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-    <h3 style="color:#607080" class="h3">Codigos Qr</h3>
-   </div>
+<div class="table-responsive" style="box-shadow: 3px 8px 10px #607080; background-color:#fff; margin:25px 25px 25px">
+  <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 px-md-4" style="background-color: #fff; padding: 10px; border-bottom: 1px solid #cdcd;">
+      <h4 style="color:#607080">Codigos QR</h4>
+      <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#nuevoCodigo"><i class="fa fa-plus"></i> Nuevo</button>
+
+  </div>
   
-  <div class="table-responsive">
   
-  <table class="table table-striped table-sm">
+ 
+  
+  <table style="margin:10px" class="table table-striped table-sm">
     <thead>
       <tr>
         <th scope="col">COD</th>
               <th scope="col">SERIE</th>
               <th scope="col">USUARIO</th>
               <th scope="col">FECHA</th>
+              <th class="text-center" scope="col">Acción</th>
               </tr>
     </thead>
     <tbody>
       <tr>
-        <tr *ngFor="let cod of Codigos">
-          <th scope="row">{{cod.COD_QR}}</th>
+        <tr *ngFor="let cod of Codigos; let i=index">
+          <th scope="row">{{i+1}}</th>
             <td>{{cod.SEQ_QR}}</td>
             <td>{{cod.USR_REGISTRO}}</td>
             <td>{{cod.FEC_REGISTRO}}</td>
-            <td class="text-center">
+            <td class="text-center"> <button type="button" class="btn btn-primary" style="margin-right: 15px;" data-bs-toggle="modal" data-bs-target="#modalEditarCodigos" (click)="EditarCodigos(cod.COD_QR)"><i class="fa fa-edit"></i></button>
+              <button type="button" class="btn btn-danger" data-bs-toggle="modal" (click)="eliminarCodigos(cod.COD_QR, i)"><i class="fa fa-trash-alt"></i></button></td>
       </tr>
     
     </tbody>
   </table>
+
+  <!---Aqui la modal para actualizar Codigo-->
+  <div class="modal fade" id="modalEditarCodigos" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-scrollable">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Editar Registro</h5>
+                <!--<button (click)= "modalCancelar()" type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>-->
+            </div>
+            <div class="modal-body">
+                <!--<router-outlet name="outlet_modal_editar"></router-outlet>-->
+                <form [formGroup]="updateForm" (ngSubmit)="onUpdate()">
+
+                    <div class="form-group">
+                        <label>SEQUENCIA QR</label>
+                        <input class="form-control" type="text" formControlName="seq_qr" required>
+                    </div>
+
+                    <div class="form-group">
+                       <label>USUARIO</label>
+                        <input class="form-control" type="text" formControlName="usr_registro" required>
+                    </div>
+                    
+                    <br>
+                    <div class="form-group">
+                        <button class="btn btn-primary btn-block" type="submit">Editar</button>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancelar</button>
+                <!--<button type="button" class="btn btn-primary">Salvar</button>-->
+            </div>
+        </div>
+    </div>
+</div>
+
+<!---Aqui la modal para Insertar tipo de PRODUCTO-->
+
+<div class="modal fade" id="nuevoCodigo" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-scrollable">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Agregar Nuevo Codigo QR</h5>
+
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+
+            </div>
+            <div class="modal-body">
+
+                <form [formGroup]="createForm" (ngSubmit)="nuevoCodigo()">
+
+                    <div class="form-group">
+                        <label>SEQUENCIA QR</label>
+                        <input class="form-control" type="text" formControlName="sequencia" required>
+
+                    </div>
+
+                    <br>
+                    <div class="form-group">
+                      <label>USUARIO</label>
+                      <input class="form-control" type="text" formControlName="usuario" required>
+
+                     </div>
+
+                     <br>
+                     
+
+                    <div class="form-group">
+                        <button class="btn btn-success btn-block" type="submit">Guardar</button>
+                    </div>
+
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancelar</button>
+            </div>
+        </div>
+    </div>
+</div>

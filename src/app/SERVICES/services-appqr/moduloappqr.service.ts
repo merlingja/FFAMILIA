@@ -37,14 +37,83 @@ export class ServiceAppQr {
   }
 
   //------------------------------condigo qr------------------------------------
-  GetCodigos() {
+  GetCodigoss() {
     let API_URL = `${this.REST_API}/codigo_qr`;
     return this.httpClient.get(API_URL , { headers: this.httpHeaders });
 
   }
 
+  // Obtener un solo codigo
+  GetCodigoQR (id: any): Observable<any> {
+    let API_URL = `${this.REST_API}/codigo_qr/${id}`;
+    return this.httpClient.get(API_URL, { headers: this.httpHeaders })
+      .pipe(map((res: any) => {
+        return res[0] || {}
+      }),
+        catchError(this.handleError)
+      )
+  }
 
+  // Update Planta
+  updatePlantass( data: any): Observable<any> {
+    let API_URL = `${this.REST_API}/actualizar-planta`;
+    return this.httpClient.put(API_URL, data, { headers: this.httpHeaders })
+      .pipe(
+        catchError(this.handleError)
+      )
+  }
+ // Update Codigo
+  updateCodigoss( data: any): Observable<any> {
+    let API_URL = `${this.REST_API}/actualizar-codigoqr`;
+    return this.httpClient.put(API_URL, data, { headers: this.httpHeaders })
+      .pipe(
+        catchError(this.handleError)
+      )
+  }
+  // ELiminacion de registros de plantas
+  borrarPlantass (id: any): Observable<any> {
+    let API_URL = `${this.REST_API}/borrar-planta/${id}`;
+    return this.httpClient.delete(API_URL, { headers: this.httpHeaders })
+      .pipe(map((res: any) => {
+        console.log(res.affectedRows)
+        return res;
+      }),
+        catchError(this.handleError)
+      )
+  }
+  // ELiminacion de registros de codigo qr
+  borrarCodigoss (id: any): Observable<any> {
+    let API_URL = `${this.REST_API}/borrar-codigoqr/${id}`;
+    return this.httpClient.delete(API_URL, { headers: this.httpHeaders })
+      .pipe(map((res: any) => {
+        console.log(res.affectedRows)
+        return res;
+      }),
+        catchError(this.handleError)
+      )
+  }
+  // Creacion de registros
+  crearPlantass (data: any): Observable<any> {
+    let API_URL = `${this.REST_API}/insertar-planta`;
+    return this.httpClient.post(API_URL, data, { headers: this.httpHeaders })
+      .pipe(map((res: any) => {
+        console.log(res)
+        return res;
+      }),
+        catchError(this.handleError)
+      )
+  }
 
+  crearCodigoss (data: any): Observable<any> {
+    let API_URL = `${this.REST_API}/insertar-codigoqr`;
+    return this.httpClient.post(API_URL, data, { headers: this.httpHeaders })
+      .pipe(map((res: any) => {
+        console.log(res)
+        return res;
+      }),
+        catchError(this.handleError)
+      )
+  }
 handleError (error: HttpErrorResponse) {
   let errorMessage = '';
   if (error.error instanceof ErrorEvent) {

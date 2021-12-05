@@ -1,7 +1,7 @@
 <div class="table-responsive" style="box-shadow: 3px 8px 10px #607080; background-color:#fff; margin:25px 25px 25px">
     <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 px-md-4" style="background-color: #fff; padding: 10px; border-bottom: 1px solid #cdcd;">
         <h4 style="color:#607080"> Productos</h4>
-        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#nuevoTipoProducto"><i class="fa fa-plus"></i> Nuevo</button>
+        <button (click)="nuevoProductoModal()" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#nuevoProducto"><i class="fa fa-plus"></i> Nuevo</button>
 
     </div>
 
@@ -27,7 +27,7 @@
                     <th scope="row">{{i+1}}</th>
                     <!--<td>{{prod.COD_TIP_PRODUCTO}}</td>-->
                     <td>{{prod.NOMBRE_PRODUCTO}}</td>
-                    <td>{{prod.PRECIO}}</td>
+                    <td>L. {{prod.PRECIO}}</td>
                     <!--<td>{{prod.FOTOGRAFIA}}</td>-->
                     <td>{{prod.VIDA_UTIL}}</td>
                     <td>{{prod.DESCRIPCION}}</td>
@@ -71,10 +71,10 @@
                         </div>
 
 
-                        <div class="form-group">
+                       <!-- <div class="form-group">
                             <label>Fotografía</label>
                             <input class="form-control" type="textarea" formControlName="fotografia" required>
-                        </div>
+                        </div>-->
 
                         <div class="form-group">
                             <label>Vida Útil</label>
@@ -145,11 +145,11 @@
                             <input class="form-control" type="text" formControlName="precio" required>
                         </div>
 
-                        <div class="form-group">
+                       <!-- <div class="form-group">
                             <label>Imagen</label>
                             <input class="form-control" type="text" formControlName="fotografia" required>
 
-                        </div>
+                        </div>-->
 
                         <div class="form-group">
                             <label>Vida Útil</label>
