@@ -3,6 +3,7 @@ import {ServicePeople} from '../../SERVICES/service_persona/personas.service';
 import {Router, ActivatedRoute} from '@angular/router';
 import {FormGroup, FormBuilder} from '@angular/forms';
 import Swal from 'sweetalert2';
+import * as html2pdf from 'html2pdf.js'
 
 @Component({
   selector: 'app-empleado',
@@ -10,6 +11,28 @@ import Swal from 'sweetalert2';
   styleUrls: ['./empleado.component.css']
 })
 export class EmpleadoComponent implements OnInit {
+  download(){
+    const element = document.getElementById('ListaEmpleado')
+    ;
+
+   var opt = {
+
+   margin:       0.82,
+   filename:     'registro de empleados.pdf',
+   image:        { type: 'jpeg', quality: 100 },
+   html2canvas:  { scale: 10 },
+   jsPDF:        { unit: 'in', format: 'letter', orientation: 'landscape' }
+
+
+
+  };
+
+
+
+  html2pdf().from(element).set(opt).save();
+  }
+
+
   Employee:any = [];
  updateForm: FormGroup;
   titulo: string ='';

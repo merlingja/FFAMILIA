@@ -3,6 +3,8 @@ import {ServicePeople} from '../../SERVICES/service_persona/personas.service';
 import {Router, ActivatedRoute} from '@angular/router';
 import {FormGroup, FormBuilder} from '@angular/forms';
 import Swal from 'sweetalert2';
+import * as html2pdf from 'html2pdf.js'
+
 
 @Component({
   selector: 'app-persona',
@@ -10,6 +12,32 @@ import Swal from 'sweetalert2';
   styleUrls: ['./persona.component.css']
 })
 export class PersonaComponent implements OnInit {
+  download(){
+    const element = document.getElementById('ListaPersona')
+    ;
+
+   var opt = {
+
+   margin:       0.001,
+   filename:     'registro de personas.pdf',
+   image:        { type: 'jpeg', quality: 100 },
+   html2canvas:  { scale: 10 },
+   jsPDF:        { unit: 'in', format: 'letter', orientation: 'landscape' }
+
+
+
+  };
+
+
+
+  html2pdf().from(element).set(opt).save();
+  }
+
+
+
+
+
+
  Perso:any = [];
  updateForm: FormGroup;
   titulo: string ='';
