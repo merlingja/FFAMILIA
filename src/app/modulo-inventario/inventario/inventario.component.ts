@@ -21,26 +21,7 @@ export class InventarioComponent implements OnInit {
   titulo: string ='';
   submitted = false;
 
-  download(){
-    const element = document.getElementById('ListaInventario')
-    ;
-
-   var opt = {
-
-   margin:       0.82,
-   filename:     'registro de empleados.pdf',
-   image:        { type: 'jpeg', quality: 100 },
-   html2canvas:  { scale: 10 },
-   jsPDF:        { unit: 'in', format: 'letter', orientation: 'landscape' }
-
-
-
-  };
-
-
-
-  html2pdf().from(element).set(opt).save();
-  }
+  
 
   constructor(private serviceInventario:ServiceInventario, 
     private router:Router,
@@ -175,6 +156,27 @@ eliminarProductoInventario(id:any, i:number):any{
 onReset(): void {
   this.submitted = false;
   this.createForm.reset();
+}
+
+download(){
+  const element = document.getElementById('ListaInventario')
+  ;
+
+ var opt = {
+
+ margin:       0.82,
+ filename:     'Productos en Inventario.pdf',
+ image:        { type: 'jpeg', quality: 100 },
+ html2canvas:  { scale: 10 },
+ jsPDF:        { unit: 'in', format: 'letter', orientation: 'landscape' }
+
+
+
+};
+
+
+
+html2pdf().from(element).set(opt).save();
 }
 
 }

@@ -6,7 +6,7 @@
     </div>
 
 
-    <table style="margin:10px" class="table table-striped table-sm">
+    <table id="TipoProducto" style="margin:10px" class="table table-striped table-sm">
         <thead>
             <tr>
                 <th scope="col">Id</th>
@@ -33,6 +33,7 @@
 
         </tbody>
     </table>
+    <button class="btn btn-primary btn-block" (click)="download()">Ver Reporte <i class="fa fa-file"></i></button>
 
     <!---Aqui la modal para actualizar tipo de PRODUCTO-->
     <div class="modal fade" id="modalEditarTipoProducto" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">

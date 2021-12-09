@@ -3,6 +3,7 @@ import {ServiceInventario} from '../../SERVICES/services_inventario/moduloInvent
 import {Router, ActivatedRoute} from '@angular/router';
 import {AbstractControl, FormBuilder, FormGroup, FormControl, Validators} from '@angular/forms';
 import Swal from 'sweetalert2';
+import * as html2pdf from 'html2pdf.js'
 
 
 @Component({
@@ -181,6 +182,26 @@ export class ProductosComponent implements OnInit {
     this.createForm.reset();
   }
    
+  download(){
+    const element = document.getElementById('Productos')
+    ;
+
+   var opt = {
+
+   margin:       0.82,
+   filename:     'Productos.pdf',
+   image:        { type: 'jpeg', quality: 100 },
+   html2canvas:  { scale: 10 },
+   jsPDF:        { unit: 'in', format: 'letter', orientation: 'landscape' }
+
+
+
+  };
+
+
+
+  html2pdf().from(element).set(opt).save();
+  }
 
 }
 

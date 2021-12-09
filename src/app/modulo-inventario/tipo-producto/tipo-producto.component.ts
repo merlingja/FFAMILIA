@@ -3,6 +3,7 @@ import {ServiceInventario} from '../../SERVICES/services_inventario/moduloInvent
 import {Router, ActivatedRoute} from '@angular/router';
 import {FormGroup, FormBuilder, AbstractControl, FormControl, Validators} from '@angular/forms';
 import Swal from 'sweetalert2';
+import * as html2pdf from 'html2pdf.js'
 
 
 
@@ -17,6 +18,8 @@ export class TipoProductoComponent implements OnInit {
   createForm: FormGroup;
   titulo: string ='';
   submitted = false;
+
+  
 
  
    constructor(
@@ -149,7 +152,26 @@ export class TipoProductoComponent implements OnInit {
     this.createForm.reset();
   }
 
-  
+  download(){
+    const element = document.getElementById('TipoProducto')
+    ;
+
+   var opt = {
+
+   margin:       0.82,
+   filename:     'Tipo de Productos.pdf',
+   image:        { type: 'jpeg', quality: 100 },
+   html2canvas:  { scale: 10 },
+   jsPDF:        { unit: 'in', format: 'letter', orientation: 'landscape' }
+
+
+
+  };
+
+
+
+  html2pdf().from(element).set(opt).save();
+  }
 
 }
 
