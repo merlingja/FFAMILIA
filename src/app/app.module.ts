@@ -11,12 +11,13 @@ import {DashboarModule} from './dashboard/dashboard.module';
 
 
 
+
 @NgModule({
   declarations: [
     AppComponent,
     rountingComponents,
-        
-   
+    
+    
   ],
   imports: [
     BrowserModule,

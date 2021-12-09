@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import {ServiceInventario} from '../../SERVICES/services_inventario/moduloInventario.service';
 import {Router, ActivatedRoute} from '@angular/router';
-import {FormGroup, FormBuilder} from '@angular/forms';
+import {AbstractControl, FormBuilder, FormGroup, FormControl, Validators} from '@angular/forms';
 import Swal from 'sweetalert2';
+import * as html2pdf from 'html2pdf.js'
 
 
 @Component({
@@ -18,6 +19,7 @@ export class ProductosComponent implements OnInit {
     updateForm: FormGroup;
     createForm: FormGroup;
     titulo: string ='';
+    submitted = false;
 
  constructor(
   private serviceInventario:ServiceInventario, 
@@ -27,26 +29,40 @@ export class ProductosComponent implements OnInit {
 
     this.updateForm = this.formBuilder.group({
       cod_producto: '',
-      cod_tip_producto:'',
-      nombre_producto:'',
-      precio:'', 
-      fotografia:'', 
-      vida_util:'',
-      descripcion:'',
-      pre_producto:'',
-      fec_caducidad:''
+      cod_tip_producto: ['', [Validators.required]],
+        nombre_producto: ['', [Validators.required,Validators.minLength(6),
+         Validators.maxLength(20)]],
+        precio: ['', [Validators.required,Validators.maxLength(5)]],
+        vida_util: ['', [Validators.required,Validators.maxLength(5)]],
+        pre_producto: ['', [Validators.required,Validators.maxLength(30)]],
+        fotografia:'',
+        fec_caducidad: ['', [Validators.required]],
+        descripcion: ['', [Validators.required,Validators.minLength(10),
+            Validators.maxLength(50)]],
 
       });
 
       this.createForm = this.formBuilder.group({
-        cod_tip_producto: '',
-        nombre_producto: '',
-        precio: '',
-        fotografia: '',
-        vida_util: '',
-        pre_producto: '',
-        fec_caducidad: '',
-        descripcion: ''
+        cod_tip_producto: ['', [Validators.required]],
+        nombre_producto: ['', 
+        [Validators.required,
+         Validators.minLength(6),
+         Validators.maxLength(20)]],
+        precio: ['', [
+         Validators.required,
+         Validators.maxLength(5)]],
+        vida_util: ['', 
+        [Validators.required,
+        Validators.maxLength(5)]],
+        pre_producto: ['', 
+        [Validators.required,
+        Validators.maxLength(30)]],
+        fec_caducidad: ['', 
+        [Validators.required]],
+        descripcion: ['', 
+        [Validators.required,
+         Validators.minLength(10),
+         Validators.maxLength(50)]],
       });
 
 
@@ -58,7 +74,15 @@ export class ProductosComponent implements OnInit {
     this.MostrarDatos();
     
   }
+  //---------
+  get f(): { [key: string]: AbstractControl } {
+    return this.createForm.controls;
+  }
 
+  get fu(): { [key: string]: AbstractControl } {
+    return this.updateForm.controls;
+  }
+//-------
   MostrarDatos(){
     this.serviceInventario.GetProductos().subscribe(res => {
       console.log(res)
@@ -76,6 +100,7 @@ export class ProductosComponent implements OnInit {
   }
 
   EditarProducto(id:number){
+    this.tiposProductos();
     this.serviceInventario.GetProducto(id).subscribe(res => {
 
       console.log(res)
@@ -95,6 +120,11 @@ export class ProductosComponent implements OnInit {
   }
 
   onUpdate(): any {
+    this.submitted = true;
+
+    if (this.updateForm.invalid) {
+      return;
+    }
     this.serviceInventario.updateProductos(this.updateForm.value)
     .subscribe(() => {
         console.log('Data updated successfully!')
@@ -127,6 +157,11 @@ export class ProductosComponent implements OnInit {
   }
 
   nuevoProducto(): any {
+    this.submitted = true;
+
+    if (this.createForm.invalid) {
+      return;
+    }
     this.serviceInventario.crearProducto( this.createForm.value)
     .subscribe(() => {
         console.log('Data updated successfully!')
@@ -142,8 +177,31 @@ export class ProductosComponent implements OnInit {
  nuevoProductoModal(){
     this.tiposProductos();
   }
-
+  onReset(): void {
+    this.submitted = false;
+    this.createForm.reset();
+  }
    
+  download(){
+    const element = document.getElementById('Productos')
+    ;
+
+   var opt = {
+
+   margin:       0.82,
+   filename:     'Productos.pdf',
+   image:        { type: 'jpeg', quality: 100 },
+   html2canvas:  { scale: 10 },
+   jsPDF:        { unit: 'in', format: 'letter', orientation: 'landscape' }
+
+
+
+  };
+
+
+
+  html2pdf().from(element).set(opt).save();
+  }
 
 }
 

@@ -2,11 +2,11 @@
     <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 px-md-4" style="background-color: #fff; padding: 10px; border-bottom: 1px solid #cdcd;">
         <h4 style="color:#607080">Producto en Inventario</h4>
         <button (click)="nuevoProdInventarioModal()" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#nuevoProductoInventario"><i class="fa fa-plus"></i> Nuevo</button>
-
+       
     </div>
 
 
-    <table style="margin:10px" class="table table-striped table-sm">
+    <table id="ListaInventario" style="margin:10px" class="table table-striped table-sm">
         <thead>
             <tr>
                 <th scope="col">Id</th>
@@ -30,10 +30,11 @@
         <tbody>
             <tr>
                 <tr *ngFor="let invt of inv; let i=index">
-                    <th scope="row">{{invt.COD_INVENTARIO}}</th>
+                    <!--<th scope="row">{{invt.COD_INVENTARIO}}</th>-->
                     <!--<td>{{invt.COD_PRODUCTO}}</td>-->
+                    <th scope="row">{{i+1}}</th>
                     <td>{{invt.NOMBRE_PRODUCTO}}</td>
-                    <td>{{invt.PRECIO}}</td>
+                    <td>L. {{invt.PRECIO}}</td>
                     <td>{{invt.CAN_EXISTENCIA}}</td>
                     <td>{{invt.DESCRIPCION}}</td>
                     <td>{{invt.FEC_INTRODUCCION | date:"dd/MM/yyyy"}}</td>
@@ -56,6 +57,8 @@
 
         </tbody>
     </table>
+
+    <button class="btn btn-primary btn-block" (click)="download()">Ver Reporte <i class="fa fa-file"></i></button>
 
     <!---Aqui la modal para actualizar o editar en inventario-------------------------------------------------------------------------------->
     <div class="modal fade" id="modalEditarInventario" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -84,18 +87,38 @@
 
                         <h6><i class="fa fa-cubes"></i> Puede registrar nuevas entras o salidas de productos al inventario</h6>
 
-                        <div class="form-group">
+                      <!-- <div class="form-group">
                             <label>Seleccione Tipo de Transacción</label>
                             <select formControlName="tip_transaccion" class="form-control" required placeholder="Seleccione">
               <option value="compra">Compra</option>
               <option value="venta">Venta</option>
             </select>
-                        </div><br>
-
+                        </div><br>-->
                         <div class="form-group">
+                            <label>Seleccione Tipo de Transaccion</label>
+                            <select formControlName="tip_transaccion" class="form-control" 
+                            [ngClass]="{ 'is-invalid': submitted && fu['tip_transaccion'].errors }" required>
+                              <option value="compra">Compra</option>
+                              <option value="venta">Venta</option>
+                            </select>
+                            <div *ngIf="submitted && fu['tip_transaccion'].errors" class="invalid-feedback">
+                               <div *ngIf="fu['tip_transaccion'].errors['required']">Campo requerido</div>
+                      </div>
+                          </div><br>
+
+                        <!--<div class="form-group">
                             <label>Cantidad de Ingreso/Salida</label>
                             <input class="form-control" type="text" formControlName="can_existencia" required placeholder="Ingrese la cantidad">
-                        </div>
+                        </div>-->
+                        <div class="form-group">
+                            <label>Cantidad de ingreso/salida</label>
+                            <input class="form-control" type="text" formControlName="can_existencia" 
+                            [ngClass]="{ 'is-invalid': submitted && fu['can_existencia'].errors }" required placeholder="Ingrese la cantidad">
+              
+                      <div *ngIf="submitted && fu['can_existencia'].errors" class="invalid-feedback">
+                               <div *ngIf="fu['can_existencia'].errors['required']">Campo requerido</div>
+                      </div>
+                          </div>
                         <br><br>
                         <div class="form-group">
                             <button class="btn btn-primary btn-block" type="submit">Guardar Cambios</button>
@@ -124,14 +147,28 @@
 
 
                     <form [formGroup]="createForm" (ngSubmit)="nuevoProductoInventario()">
-                        <div class="form-group">
+                     <!--<div class="form-group">
                             <label>ID Producto</label>
 
                             <select formControlName="cod_producto" class="form-control">
           <option value="{{producto.COD_PRODUCTO}}" *ngFor="let producto of prodinv">
             {{producto.NOMBRE_PRODUCTO}}</option> </select>
 
-                        </div>
+                        </div>-->
+                        <div class="form-group">
+                            <label>Lista de Productos</label>
+                            
+                            <select formControlName="cod_producto" class="form-control" 
+                            [ngClass]="{ 'is-invalid': submitted && f['cod_producto'].errors }">
+                              <option value="{{producto.COD_PRODUCTO}}" *ngFor="let producto of prodinv">
+                                {{producto.NOMBRE_PRODUCTO}}</option> </select>
+                                <div *ngIf="submitted && f['cod_producto'].errors" class="invalid-feedback">
+                                  <div *ngIf="f['cod_producto'].errors['required']">Seleccione una opcion</div>
+                              </div>
+                         
+                          </div>
+
+                        
 
                         <div class="form-group">
                             <label>Existencia</label>
@@ -139,10 +176,19 @@
                         </div>
 
 
-                        <div class="form-group">
+                      <!--  <div class="form-group">
                             <label>Fecha Introducción</label>
                             <input class="form-control" type="date" formControlName="fec_introduccion" required>
-                        </div>
+                        </div>-->
+                        <div class="form-group">
+                            <label>fecha Introduccion</label>
+                            <input class="form-control" type="date" formControlName="fec_introduccion" 
+                            [ngClass]="{ 'is-invalid': submitted && f['fec_introduccion'].errors }" required>
+                            <div *ngIf="submitted && f['fec_introduccion'].errors" class="invalid-feedback">
+                                     <div *ngIf="f['fec_introduccion'].errors['required']">Campo requerido</div>
+                            </div>
+                          </div>
+                        
 
                         <br>
 
@@ -152,7 +198,7 @@
                     </form>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancelar</button>
+                    <button type="button" (click)="onReset()" class="btn btn-danger" data-bs-dismiss="modal">Cancelar</button>
                 </div>
             </div>
         </div>

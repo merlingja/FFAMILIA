@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import {ServiceInventario} from '../../SERVICES/services_inventario/moduloInventario.service';
 import {Router, ActivatedRoute} from '@angular/router';
-import {FormGroup, FormBuilder} from '@angular/forms';
+import {FormGroup, FormBuilder, AbstractControl, FormControl, Validators} from '@angular/forms';
 import Swal from 'sweetalert2';
+import * as html2pdf from 'html2pdf.js'
+
 
 
 @Component({
@@ -15,25 +17,33 @@ export class TipoProductoComponent implements OnInit {
   updateForm: FormGroup;
   createForm: FormGroup;
   titulo: string ='';
+  submitted = false;
 
   
+
+ 
    constructor(
      private serviceInventario:ServiceInventario, 
      private router:Router,
      private activatedRoute: ActivatedRoute,
      public formBuilder: FormBuilder) {
-
+//-------se modifico aqui
       this.updateForm = this.formBuilder.group({
         cod_tip_producto: '',
-        tip_producto: '',
-        des_tip_producto:''
+        tip_producto: ['', [Validators.required,Validators.minLength(4),
+            Validators.maxLength(20)]],
+        des_tip_producto:['', [Validators.required,Validators.minLength(6),
+            Validators.maxLength(100)]],
   
         });
 
+//-----------se modifico aqio-------------------------
         this.createForm = this.formBuilder.group({
-        tipo: '',
-        descripcion:''
-        });
+          tipo: ['', [Validators.required,Validators.minLength(4),
+              Validators.maxLength(20)]],
+          descripcion:['', [Validators.required,Validators.minLength(6),
+              Validators.maxLength(100)]],
+          });
   
 
       }
@@ -41,8 +51,21 @@ export class TipoProductoComponent implements OnInit {
 
   ngOnInit(): void {
     this.ListarDatos();
+
+
+//--------------se modifico aqui-------------------------
+
+      }
+      get f(): { [key: string]: AbstractControl } {
+        return this.createForm.controls;
+      }
+      get fu(): { [key: string]: AbstractControl } {
+        return this.updateForm.controls;
       }
 
+
+//---------------------
+ 
   ListarDatos(){
     this.serviceInventario.GetTipos().subscribe(res => {
       console.log(res)
@@ -66,6 +89,11 @@ export class TipoProductoComponent implements OnInit {
   }
 
   onUpdate(): any {
+    this.submitted = true;
+
+    if (this.updateForm.invalid) {
+      return;
+    }
     this.serviceInventario.updateTipoProducto(this.updateForm.value)
     .subscribe(() => {
         console.log('Data updated successfully!')
@@ -102,6 +130,12 @@ export class TipoProductoComponent implements OnInit {
   }
 
   nuevoTipoProducto(): any {
+    //-------------------------se modifico aqui---------------------------------
+    this.submitted = true;
+
+    if (this.createForm.invalid) {
+      return;
+    }
     this.serviceInventario.crearTipoProducto( this.createForm.value).subscribe(() => {
         console.log('Data updated successfully!')
         Swal.fire('Se Inserto con exito',this.titulo,'success')
@@ -113,7 +147,31 @@ export class TipoProductoComponent implements OnInit {
     });
   }
 
-  
+  onReset(): void {
+    this.submitted = false;
+    this.createForm.reset();
+  }
+
+  download(){
+    const element = document.getElementById('TipoProducto')
+    ;
+
+   var opt = {
+
+   margin:       0.82,
+   filename:     'Tipo de Productos.pdf',
+   image:        { type: 'jpeg', quality: 100 },
+   html2canvas:  { scale: 10 },
+   jsPDF:        { unit: 'in', format: 'letter', orientation: 'landscape' }
+
+
+
+  };
+
+
+
+  html2pdf().from(element).set(opt).save();
+  }
 
 }
 
