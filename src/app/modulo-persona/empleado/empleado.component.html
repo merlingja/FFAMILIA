@@ -60,7 +60,7 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <div class="col-md-4">
+                    <div class="col-md-6">
                         <form [formGroup]="updateForm" (ngSubmit)="onUpdate()">
 
                             <div class="form-group">
@@ -111,14 +111,14 @@
 
                             <br>
                             <div class="form-group">
-                                <button class="btn btn-primary btn-block" type="submit">Editar</button>
+                                <button class="btn btn-primary btn-block" type="submit"><i class="fa fa-check"></i> Editar</button>
                             </div>
                         </form>
                     </div>
 
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancelar</button>
+                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal"> <i class="fas fa-times"></i> Cancelar</button>
 
                 </div>
             </div>
@@ -138,12 +138,9 @@
 
                 </div>
                 <div class="modal-body">
-                    <div class="row justify-content-center mt-5">
-                        <div class="col-md-4">
+                    <div class="row justify-content mt-1">
+                        <div class="col-md-6">
                             <form [formGroup]="createForm" (ngSubmit)="nuevoEmpleado()">
-
-
-
                                 <div class="form-group">
                                     <label>DNI</label>
                                     <input class="form-control" type="textarea" formControlName="DNI" required>
@@ -187,7 +184,7 @@
 
 
                                 <div class="form-group">
-                                    <button class="btn btn-success btn-block" type="submit">Guardar</button>
+                                    <button class="btn btn-success btn-block" type="submit"><i class="fa fa-save"></i> Guardar</button>
                                 </div>
 
                             </form>
@@ -195,7 +192,7 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal"><i class="fas fa-times"></i> Cancelar</button>
                 </div>
             </div>
         </div>

@@ -18,7 +18,7 @@ export class PersonaComponent implements OnInit {
 
    var opt = {
 
-   margin:       0.001,
+   margin:       0.015,
    filename:     'registro de personas.pdf',
    image:        { type: 'jpeg', quality: 100 },
    html2canvas:  { scale: 10 },
@@ -159,7 +159,7 @@ export class PersonaComponent implements OnInit {
         }
       }, (err) => {
         console.log(err);
-        Swal.fire('Ocurrio problema',this.titulo,'error')
+
     });
     }
   }

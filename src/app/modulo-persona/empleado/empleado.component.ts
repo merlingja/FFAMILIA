@@ -1,3 +1,4 @@
+
 import { Component, OnInit } from '@angular/core';
 import {ServicePeople} from '../../SERVICES/service_persona/personas.service';
 import {Router, ActivatedRoute} from '@angular/router';
@@ -17,9 +18,10 @@ export class EmpleadoComponent implements OnInit {
 
    var opt = {
 
+
    margin:       0.82,
    filename:     'registro de empleados.pdf',
-   image:        { type: 'jpeg', quality: 100 },
+   image:        { type: 'jpeg', quality: 100, src:'../assets/logo_full.png' },
    html2canvas:  { scale: 10 },
    jsPDF:        { unit: 'in', format: 'letter', orientation: 'landscape' }
 
@@ -137,17 +139,23 @@ export class EmpleadoComponent implements OnInit {
             if(res.affectedRows==1){
               console.log("Se elimino el registro");
               Swal.fire('Se elimino con exito',this.titulo,'success')
+
               this.Employee.splice(i, 1);
             }else{
               console.log("No se pudo eliminar el registro o, no existe");
               window.alert("error")
+
             }
           }, (err) => {
-            console.log(err);
-            Swal.fire('No se puede eliminar registro',this.titulo,'error')
-        });
-        }
+             console.log(err);
+
+             }
+
+        )};
       }
+
+
+
 
 
 
