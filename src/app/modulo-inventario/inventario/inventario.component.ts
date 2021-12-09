@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import {ServiceInventario} from '../../SERVICES/services_inventario/moduloInventario.service';
 import {Router, ActivatedRoute} from '@angular/router';
-import {FormGroup, FormBuilder} from '@angular/forms';
+import {AbstractControl, FormBuilder, FormGroup, FormControl, Validators} from '@angular/forms';
 import Swal from 'sweetalert2';
+import * as html2pdf from 'html2pdf.js'
 
 @Component({
   selector: 'app-inventario',
@@ -18,6 +19,28 @@ export class InventarioComponent implements OnInit {
   updateForm: FormGroup;
   createForm: FormGroup;
   titulo: string ='';
+  submitted = false;
+
+  download(){
+    const element = document.getElementById('ListaInventario')
+    ;
+
+   var opt = {
+
+   margin:       0.82,
+   filename:     'registro de empleados.pdf',
+   image:        { type: 'jpeg', quality: 100 },
+   html2canvas:  { scale: 10 },
+   jsPDF:        { unit: 'in', format: 'letter', orientation: 'landscape' }
+
+
+
+  };
+
+
+
+  html2pdf().from(element).set(opt).save();
+  }
 
   constructor(private serviceInventario:ServiceInventario, 
     private router:Router,
@@ -25,17 +48,16 @@ export class InventarioComponent implements OnInit {
     public formBuilder: FormBuilder) {
 
       this.updateForm = this.formBuilder.group({
-        cod_producto: '',
-        can_existencia: '',
-        tip_transaccion: ''
+        cod_producto: ['', [Validators.required]],
+        can_existencia: ['', [Validators.required]],
+        tip_transaccion: ['', [Validators.required]],
                 
   
         });
-
         this.createForm = this.formBuilder.group({
-          cod_producto: '',
+          cod_producto: ['', [Validators.required]],
           can_existencia: '',
-          fec_introduccion:''
+          fec_introduccion:['', [Validators.required]],
           
         });
 
@@ -47,6 +69,13 @@ export class InventarioComponent implements OnInit {
 
     
   }
+  get f(): { [key: string]: AbstractControl } {
+    return this.createForm.controls;
+  }
+  get fu(): { [key: string]: AbstractControl } {
+    return this.updateForm.controls;
+  }
+
   ListarInventario(){
     this.serviceInventario.GetInventarios().subscribe(res => {
       console.log(res)
@@ -77,6 +106,11 @@ EditarInventario(id:number){
 }
 
 onUpdate(): any {
+  this.submitted = true;
+
+    if (this.updateForm.invalid) {
+      return;
+    }
   this.serviceInventario.updateInventory(this.updateForm.value)
   .subscribe(() => {
       console.log('Data updated successfully!')
@@ -91,6 +125,11 @@ onUpdate(): any {
 }
 
 nuevoProductoInventario(): any {
+  this.submitted = true;
+
+    if (this.createForm.invalid) {
+      return;
+    }
   this.serviceInventario.crearProductoInventario( this.createForm.value)
   .subscribe(() => {
       console.log('Data updated successfully!')
@@ -133,7 +172,10 @@ eliminarProductoInventario(id:any, i:number):any{
   }
 }
 
-
+onReset(): void {
+  this.submitted = false;
+  this.createForm.reset();
+}
 
 }
 

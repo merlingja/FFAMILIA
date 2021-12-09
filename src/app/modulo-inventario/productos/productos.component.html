@@ -29,7 +29,7 @@
                     <td>{{prod.NOMBRE_PRODUCTO}}</td>
                     <td>L. {{prod.PRECIO}}</td>
                     <!--<td>{{prod.FOTOGRAFIA}}</td>-->
-                    <td>{{prod.VIDA_UTIL}}</td>
+                    <td>{{prod.VIDA_UTIL}}Dias</td>
                     <td>{{prod.DESCRIPCION}}</td>
                     <td>{{prod.PRE_PRODUCTO}}</td>
                     <td>{{prod.FEC_CADUCIDAD | date:"dd/MM/yyyy"}}</td>
@@ -53,50 +53,92 @@
 
                 <div class="modal-body">
                     <form [formGroup]="updateForm" (ngSubmit)="onUpdate()">
-
                         <div class="form-group">
-                            <label>ID Tipo Producto</label>
-                            <input class="form-control" type="text" formControlName="cod_tip_producto" required>
-                        </div>
-
-
-                        <div class="form-group">
+                            <label>Tipo de producto</label>
+                            
+                            <select formControlName="cod_tip_producto" class="form-control" 
+                            [ngClass]="{ 'is-invalid': submitted && fu['cod_tip_producto'].errors }">
+                              <option value="{{tipo.COD_TIP_PRODUCTO}}" *ngFor="let tipo of tipoProductos"
+                              >{{tipo.TIP_PRODUCTO}}</option> </select>
+                    
+                              <div *ngIf="submitted && fu['cod_tip_producto'].errors" class="invalid-feedback">
+                                  <div *ngIf="fu['cod_tip_producto'].errors['required']">Seleccione una opcion</div>
+                              </div>
+                         
+                          </div>
+                      
+                               
+                              <div class="form-group">
                             <label>Nombre Producto</label>
-                            <input class="form-control" type="textarea" formControlName="nombre_producto" required>
-                        </div>
-
-                        <div class="form-group">
+                            <input class="form-control" type="text" formControlName="nombre_producto"
+                            [ngClass]="{ 'is-invalid': submitted && fu['nombre_producto'].errors }" required>
+                            <div *ngIf="submitted && fu['nombre_producto'].errors" class="invalid-feedback">
+                                     <div *ngIf="fu['nombre_producto'].errors['required']">Complete este campo</div>
+                                      <div *ngIf="fu['nombre_producto'].errors['minlength']">Minimo de caracteres 6 </div>
+                            <div *ngIf="fu['nombre_producto'].errors['maxlength']">Maximo de caracteres 20</div>
+                            </div>
+                          </div>
+                    
+                              <div class="form-group">
                             <label>Precio</label>
-                            <input class="form-control" type="text" formControlName="precio" required>
-                        </div>
-
-
-                       <!-- <div class="form-group">
-                            <label>Fotografía</label>
-                            <input class="form-control" type="textarea" formControlName="fotografia" required>
-                        </div>-->
-
-                        <div class="form-group">
+                            <input class="form-control" type="text" formControlName="precio"
+                            [ngClass]="{ 'is-invalid': submitted && fu['precio'].errors }" required>
+                            <div *ngIf="submitted && fu['precio'].errors" class="invalid-feedback">
+                              <div *ngIf="fu['precio'].errors['required']">Complete este campo</div>
+                              <div *ngIf="fu['precio'].errors['maxlength']">Maximo de caracteres 5</div>
+                    
+                            </div>
+                          </div>
+                      
+                               
+                          
+                    
+                              <div class="form-group">
                             <label>Vida Útil</label>
-                            <input class="form-control" type="text" formControlName="vida_util" required>
-                        </div>
-
-
-                        <div class="form-group">
+                            <input class="form-control" type="text" formControlName="vida_util" 
+                            [ngClass]="{ 'is-invalid': submitted && fu['vida_util'].errors }" required>
+                            <div *ngIf="submitted && fu['vida_util'].errors" class="invalid-feedback">
+                              <div *ngIf="fu['vida_util'].errors['required']">Complete este campo</div>
+                              <div *ngIf="fu['vida_util'].errors['maxlength']">Maximo de caracteres 5</div>
+                            </div>
+                          </div>
+                      
+                               
+                              <div class="form-group">
                             <label>Descripción</label>
-                            <textarea formControlName="descripcion" class="form-control" required></textarea>
-                        </div>
-
-                        <div class="form-group">
+                            <textarea formControlName="descripcion" class="form-control" 
+                            [ngClass]="{ 'is-invalid': submitted && fu['descripcion'].errors }" required>
+                             </textarea>
+                            <div *ngIf="submitted && fu['descripcion'].errors" class="invalid-feedback">
+                                     <div *ngIf="fu['descripcion'].errors['required']">Complete este campo</div>
+                                      <div *ngIf="fu['descripcion'].errors['minlength']">Minimo de caracteres 10 </div>
+                            <div *ngIf="fu['descripcion'].errors['maxlength']">Maximo de caracteres 50</div>
+                            </div>
+                          </div>
+                    
+                             
+                          <div class="form-group">
                             <label>Presentación</label>
-                            <input class="form-control" type="text" formControlName="pre_producto" required>
-                        </div>
-
-
-                        <div class="form-group">
-                            <label>Vencimiento</label>
-                            <input class="form-control" type="date" formControlName="fec_caducidad" required>
-                        </div>
+                            <input class="form-control" type="text" formControlName="pre_producto" 
+                             [ngClass]="{ 'is-invalid': submitted && fu['pre_producto'].errors }" required>
+                            <div *ngIf="submitted && fu['pre_producto'].errors" class="invalid-feedback">
+                                <div *ngIf="fu['pre_producto'].errors['required']">Complete este campo</div>
+                                <div *ngIf="fu['pre_producto'].errors['maxlength']">Maximo de caracteres 30</div>
+                            </div>
+                          </div>
+                      
+                               
+                              <div class="form-group">
+                            <label>vencimiento</label>
+                            <input class="form-control" type="date" formControlName="fec_caducidad"
+                            [ngClass]="{ 'is-invalid': submitted && fu['fec_caducidad'].errors }" required>
+                            <div *ngIf="submitted && fu['fec_caducidad'].errors" class="invalid-feedback">
+                                     <div *ngIf="fu['fec_caducidad'].errors['required']">Complete este campo</div>
+                            </div>
+                          </div>
+                          <br>
+                    
+                              
                         <br>
                         <div class="form-group">
                             <button class="btn btn-primary btn-block" type="submit">Editar</button>
@@ -126,24 +168,56 @@
 
 
                     <form [formGroup]="createForm" (ngSubmit)="nuevoProducto()">
-                        <div class="form-group">
+                       <!-- <div class="form-group">
                             <label>Tipo de Producto</label>
 
                             <select formControlName="cod_tip_producto" class="form-control">
-          <option value="{{tipo.COD_TIP_PRODUCTO}}" *ngFor="let tipo of tipoProductos"
-          >{{tipo.TIP_PRODUCTO}}</option> </select>
+          <option value="{{tipo.COD_TIP_PRODUCTO}}" *ngFor="let tipo of tipoProductos">{{tipo.TIP_PRODUCTO}}</option> </select>
 
-                        </div>
-
+                        </div>-->
                         <div class="form-group">
+                            <label>Tipo de producto</label>
+                            
+                            <select formControlName="cod_tip_producto" class="form-control" 
+                            [ngClass]="{ 'is-invalid': submitted && f['cod_tip_producto'].errors }">
+                              <option value="{{tipo.COD_TIP_PRODUCTO}}" *ngFor="let tipo of tipoProductos"
+                              >{{tipo.TIP_PRODUCTO}}</option> </select>
+                    
+                              <div *ngIf="submitted && f['cod_tip_producto'].errors" class="invalid-feedback">
+                                  <div *ngIf="f['cod_tip_producto'].errors['required']">Seleccione una opcion</div>
+                              </div>
+                         
+                          </div>
+
+                        <!--<div class="form-group">
                             <label>Nombre Producto</label>
                             <input class="form-control" type="text" formControlName="nombre_producto" required>
-                        </div>
-
+                        </div>-->
                         <div class="form-group">
+                            <label>Nombre Producto</label>
+                            <input class="form-control" type="text" formControlName="nombre_producto"
+                            [ngClass]="{ 'is-invalid': submitted && f['nombre_producto'].errors }" required>
+                            <div *ngIf="submitted && f['nombre_producto'].errors" class="invalid-feedback">
+                                     <div *ngIf="f['nombre_producto'].errors['required']">Complete este campo</div>
+                                      <div *ngIf="f['nombre_producto'].errors['minlength']">Minimo de caracteres 6 </div>
+                            <div *ngIf="f['nombre_producto'].errors['maxlength']">Maximo de caracteres 20</div>
+                            </div>
+                          </div>
+
+                        <!--<div class="form-group">
                             <label>Precio</label>
                             <input class="form-control" type="text" formControlName="precio" required>
-                        </div>
+                        </div>-->
+                        <div class="form-group">
+                            <label>Precio</label>
+                            <input class="form-control" type="text" formControlName="precio"
+                            [ngClass]="{ 'is-invalid': submitted && f['precio'].errors }" required>
+                            <div *ngIf="submitted && f['precio'].errors" class="invalid-feedback">
+                              <div *ngIf="f['precio'].errors['required']">Complete este campo</div>
+                              <div *ngIf="f['precio'].errors['maxlength']">Maximo de caracteres 5</div>
+                    
+                            </div>
+                          </div>
 
                        <!-- <div class="form-group">
                             <label>Imagen</label>
@@ -151,25 +225,62 @@
 
                         </div>-->
 
-                        <div class="form-group">
+                        <!--<div class="form-group">
                             <label>Vida Útil</label>
                             <input class="form-control" type="text" formControlName="vida_util" required>
-                        </div>
-
+                        </div>-->
                         <div class="form-group">
+                            <label>Vida Útil</label>
+                            <input class="form-control" type="text" formControlName="vida_util" 
+                            [ngClass]="{ 'is-invalid': submitted && f['vida_util'].errors }" required>
+                            <div *ngIf="submitted && f['vida_util'].errors" class="invalid-feedback">
+                              <div *ngIf="f['vida_util'].errors['required']">Complete este campo</div>
+                              <div *ngIf="f['vida_util'].errors['maxlength']">Maximo de caracteres 5</div>
+                            </div>
+                          </div>
+
+                       <!--<div class="form-group">
                             <label>Presentación</label>
                             <input class="form-control" type="text" formControlName="pre_producto" required>
-                        </div>
-
+                        </div>-->
                         <div class="form-group">
+                            <label>Presentación</label>
+                            <input class="form-control" type="text" formControlName="pre_producto" 
+                             [ngClass]="{ 'is-invalid': submitted && f['pre_producto'].errors }" required>
+                            <div *ngIf="submitted && f['pre_producto'].errors" class="invalid-feedback">
+                                <div *ngIf="f['pre_producto'].errors['required']">Complete este campo</div>
+                                <div *ngIf="f['pre_producto'].errors['maxlength']">Maximo de caracteres 30</div>
+                            </div>
+                          </div>
+
+                        <!--<div class="form-group">
                             <label>Vencimiento</label>
                             <input class="form-control" type="date" formControlName="fec_caducidad" required>
-                        </div>
-
+                        </div>-->
                         <div class="form-group">
+                            <label>vencimiento</label>
+                            <input class="form-control" type="date" formControlName="fec_caducidad"
+                            [ngClass]="{ 'is-invalid': submitted && f['fec_caducidad'].errors }" required>
+                            <div *ngIf="submitted && f['fec_caducidad'].errors" class="invalid-feedback">
+                                     <div *ngIf="f['fec_caducidad'].errors['required']">Complete este campo</div>
+                            </div>
+                          </div>
+
+                       <!-- <div class="form-group">
                             <label>Descripción</label>
                             <textarea formControlName="descripcion" class="form-control" required></textarea>
-                        </div>
+                        </div>-->
+                        <div class="form-group">
+                            <label>Descripción</label>
+                            <textarea formControlName="descripcion" class="form-control" 
+                            [ngClass]="{ 'is-invalid': submitted && f['descripcion'].errors }" required>
+                             </textarea>
+                            <div *ngIf="submitted && f['descripcion'].errors" class="invalid-feedback">
+                                     <div *ngIf="f['descripcion'].errors['required']">Complete este campo</div>
+                                      <div *ngIf="f['descripcion'].errors['minlength']">Minimo de caracteres 10 </div>
+                            <div *ngIf="f['descripcion'].errors['maxlength']">Maximo de caracteres 50</div>
+                            </div>
+                          </div>
                         <br>
 
                         <div class="form-group">
@@ -178,7 +289,7 @@
                     </form>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancelar</button>
+                    <button type="button" (click)="onReset()" class="btn btn-danger" data-bs-dismiss="modal">Cancelar</button>
                 </div>
             </div>
         </div>

@@ -48,15 +48,28 @@
 
                         <div class="form-group">
                             <label>Tipo Producto</label>
-                            <input class="form-control" type="text" formControlName="tip_producto" required>
-                        </div>
+                            <input class="form-control" type="text" formControlName="tip_producto"
+                            [ngClass]="{ 'is-invalid': submitted && fu['tip_producto'].errors }" required>
+                            <div *ngIf="submitted && fu['tip_producto'].errors" class="invalid-feedback">
+                               <div *ngIf="fu['tip_producto'].errors['required']">Complete este campo</div>
+                                <div *ngIf="fu['tip_producto'].errors['minlength']">Minimo de caracteres 4 </div>
+                              <div *ngIf="fu['tip_producto'].errors['maxlength']">Maximo de caracteres 20</div>
+                            </div>
+                          </div>
 
 
-                        <div class="form-group">
-                            <label>Descripción</label>
+                          <div class="form-group">
+                            <label>Descripcion</label>
                             <!--<input class="form-control" type="textarea" formControlName="des_tip_producto" required>-->
-                            <textarea formControlName="des_tip_producto" class="form-control" required></textarea>
-                        </div>
+                            <textarea formControlName="des_tip_producto" class="form-control" 
+                            [ngClass]="{ 'is-invalid': submitted && fu['des_tip_producto'].errors }" required></textarea>
+                           <div *ngIf="submitted && fu['des_tip_producto'].errors" class="invalid-feedback">
+                               <div *ngIf="fu['des_tip_producto'].errors['required']">Complete este campo</div>
+               <div *ngIf="fu['des_tip_producto'].errors['minlength']">Minimo de caracteres 6 </div>
+               <div *ngIf="fu['des_tip_producto'].errors['maxlength']">Maximo de caracteres 100</div>
+              
+                            </div>
+                          </div>
                         <br>
                         <div class="form-group">
                             <button class="btn btn-primary btn-block" type="submit">Editar</button>
@@ -68,8 +81,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancelar</button>
-                    <!--<button type="button" class="btn btn-primary">Salvar</button>-->
-                </div>
+                    </div>
             </div>
         </div>
     </div>
@@ -91,18 +103,28 @@
 
                         <div class="form-group">
                             <label>Tipo Producto</label>
-                            <input class="form-control" type="text" formControlName="tipo" required>
-
-                        </div>
+                            <input class="form-control" type="text" formControlName="tipo"
+                            [ngClass]="{ 'is-invalid': submitted && f['tipo'].errors }"  required>
+                            <div *ngIf="submitted && f['tipo'].errors" class="invalid-feedback">
+                                     <div *ngIf="f['tipo'].errors['required']">Complete este campo</div>
+                                     <div *ngIf="f['tipo'].errors['minlength']">Minimo de caracteres 4 </div>
+                                     <div *ngIf="f['tipo'].errors['maxlength']">Maximo de caracteres 20</div>
+                            </div>
+                          </div>
 
                         <br>
-
-
+                       
                         <div class="form-group">
-                            <label>Descripción</label>
-                            <!--<input class="form-control" type="textarea" formControlName="descripcion" required>-->
-                            <textarea formControlName="descripcion" class="form-control" required></textarea>
-                        </div>
+                            <label>Descripcion</label>
+                            <textarea formControlName="descripcion" class="form-control"
+                            [ngClass]="{ 'is-invalid': submitted && f['descripcion'].errors }" required></textarea>
+                           <div *ngIf="submitted && f['descripcion'].errors" class="invalid-feedback">
+                                     <div *ngIf="f['descripcion'].errors['required']">Complete este campo</div>
+                     <div *ngIf="f['descripcion'].errors['minlength']">Minimo de caracteres 6 </div>
+                     <div *ngIf="f['descripcion'].errors['maxlength']">Maximo de caracteres 100</div>
+                    
+                                  </div>
+                          </div>
                         <br>
 
                         <div class="form-group">
@@ -112,7 +134,7 @@
                     </form>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancelar</button>
+                    <button  type="button" (click)="onReset()" class="btn btn-danger" data-bs-dismiss="modal">Cancelar</button>
                 </div>
             </div>
         </div>
