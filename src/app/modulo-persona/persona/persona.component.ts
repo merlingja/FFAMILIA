@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {ServicePeople} from '../../SERVICES/service_persona/personas.service';
 import {Router, ActivatedRoute} from '@angular/router';
-import {FormGroup, FormBuilder} from '@angular/forms';
+import {FormGroup, FormBuilder, AbstractControl, FormControl, Validators} from '@angular/forms';
 import Swal from 'sweetalert2';
 import * as html2pdf from 'html2pdf.js'
 
@@ -42,6 +42,7 @@ export class PersonaComponent implements OnInit {
  updateForm: FormGroup;
   titulo: string ='';
   createForm: FormGroup;
+  submitted = false;
 
   constructor(private servicePeople:ServicePeople,
     private router:Router,
@@ -49,16 +50,26 @@ export class PersonaComponent implements OnInit {
      public formBuilder: FormBuilder) {
       this.updateForm = this.formBuilder.group({
         COD_PERSONA: '',
-        DNI: '',
-        NOMBRES:'',
-        APELLIDOS:'',
-        EDAD:'',
-        SEXO:'',
-        ESTADOCIVIL:'',
-        DIRECCION:'',
-        TELEFONO:'',
-        CORREO:'',
-        DESCRIPCION:'',
+        DNI: ['', [Validators.required,Validators.minLength(4),
+          Validators.maxLength(20)]],
+        NOMBRES:['', [Validators.required,Validators.minLength(3),
+          Validators.maxLength(100)]],
+        APELLIDOS:['', [Validators.required,Validators.minLength(4),
+          Validators.maxLength(100)]],
+        EDAD: ['', [Validators.required,Validators.minLength(1),
+          Validators.maxLength(100)]],
+        SEXO: ['', [Validators.required,Validators.minLength(1),
+          Validators.maxLength(100)]],
+        ESTADOCIVIL:['', [Validators.required,Validators.minLength(1),
+          Validators.maxLength(100)]],
+        DIRECCION:['', [Validators.required,Validators.minLength(6),
+          Validators.maxLength(100)]],
+        TELEFONO:['', [Validators.required,Validators.minLength(6),
+          Validators.maxLength(100)]],
+        CORREO: ['', [Validators.required,Validators.minLength(4),
+          Validators.maxLength(100)]],
+        DESCRIPCION:  ['', [Validators.required,Validators.minLength(3),
+          Validators.maxLength(100)]],
         FEC_INGRESO:''
 
 
@@ -66,16 +77,27 @@ export class PersonaComponent implements OnInit {
         });
 
         this.createForm = this.formBuilder.group({
-          DNI: '',
-          NOMBRES: '',
-          APELLIDOS: '',
-          EDAD: '',
-          SEXO: '',
-          ESTADOCIVIL: '',
-          DIRECCION:'',
-          TELEFONO: '',
-          CORREO: '',
-          DESCRIPCION:''
+          DNI: ['', [Validators.required,Validators.minLength(4),
+            Validators.maxLength(20)]],
+          NOMBRES: ['', [Validators.required,Validators.minLength(3),
+            Validators.maxLength(100)]],
+          APELLIDOS: ['', [Validators.required,Validators.minLength(4),
+            Validators.maxLength(100)]],
+          EDAD: ['', [Validators.required,Validators.minLength(1),
+            Validators.maxLength(100)]],
+          SEXO: ['', [Validators.required,Validators.minLength(1),
+            Validators.maxLength(100)]],
+          ESTADOCIVIL: ['', [Validators.required,Validators.minLength(1),
+            Validators.maxLength(100)]],
+          DIRECCION:['', [Validators.required,Validators.minLength(6),
+            Validators.maxLength(100)]],
+          TELEFONO: ['', [Validators.required,Validators.minLength(6),
+            Validators.maxLength(100)]],
+          CORREO: ['', [Validators.required,Validators.minLength(4),
+            Validators.maxLength(100)]],
+          DESCRIPCION:['', [Validators.required,Validators.minLength(3),
+            Validators.maxLength(100)]],
+            FEC_INGRESO: ''
         });
 
       }
@@ -83,6 +105,14 @@ export class PersonaComponent implements OnInit {
 
   ngOnInit(): void {
     this.ListarPersona();
+      }
+
+
+      get fu(): { [key: string]: AbstractControl } {
+        return this.createForm.controls;
+      }
+      get f(): { [key: string]: AbstractControl } {
+        return this.updateForm.controls;
       }
 
   ListarPersona(){
@@ -118,6 +148,11 @@ export class PersonaComponent implements OnInit {
   }
 
   onUpdate(): any {
+    this.submitted = true;
+
+if (this.updateForm.invalid) {
+  return;
+}
     this.servicePeople.updatePersona(this.updateForm.value)
     .subscribe(() => {
         console.log('Data updated successfully!')
@@ -132,17 +167,29 @@ export class PersonaComponent implements OnInit {
   }
 
   nuevoPersona(): any {
-    this.servicePeople.crearPersona( this.createForm.value)
-    .subscribe(() => {
-        console.log('Data updated successfully!')
-        Swal.fire('Se Inserto con exito',this.titulo,'success')
-         this.ListarPersona();
+    this.submitted = true;
 
-      }, (err) => {
-        console.log(err);
-        Swal.fire('Ocurrio problema',this.titulo,'error')
-    });
+    if (this.createForm.invalid) {
+      return;
+    }
+
+
+    this.servicePeople.crearPersona( this.createForm.value).subscribe(() => {
+      console.log('Data updated successfully!')
+      Swal.fire('Se Inserto con exito',this.titulo,'success')
+       this.ListarPersona();
+
+    }, (err) => {
+      console.log(err);
+      Swal.fire('Ocurrio problema',this.titulo,'error')
+  });
   }
+
+  onReset(): void {
+    this.submitted = false;
+    this.createForm.reset();
+  }
+
 
 
   eliminarPersona(id:any, i:number):any{

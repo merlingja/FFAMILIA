@@ -65,48 +65,90 @@
 
                             <div class="form-group">
                                 <label>DNI</label>
-                                <input class="form-control" type="text" formControlName="DNI" required>
+                                <input class="form-control" type="text" formControlName="DNI" [ngClass]="{ 'is-invalid': submitted && f['DNI'].errors }" required>
+                                <div *ngIf="submitted && f['DNI'].errors" class="invalid-feedback">
+                                    <div *ngIf="f['DNI'].errors['required']">Complete este campo</div>
+                                    <div *ngIf="f['DNI'].errors['minlength']">Minimo de caracteres 4 </div>
+                                    <div *ngIf="f['DNI'].errors['maxlength']">Maximo de caracteres 20</div>
+                                </div>
                             </div>
 
 
                             <div class="form-group">
                                 <label>Nombres</label>
-                                <input class="form-control" type="textarea" formControlName="NOMBRES" required>
+                                <input class="form-control" type="text" formControlName="NOMBRES" [ngClass]="{ 'is-invalid': submitted && f['NOMBRES'].errors }" required>
+                                <div *ngIf="submitted && f['NOMBRES'].errors" class="invalid-feedback">
+                                    <div *ngIf="f['NOMBRES'].errors['required']">Complete este campo</div>
+                                    <div *ngIf="f['NOMBRES'].errors['minlength']">Minimo de caracteres 3 </div>
+                                    <div *ngIf="f['NOMBRES'].errors['maxlength']">Maximo de caracteres 100</div>
+                                </div>
                             </div>
 
                             <div class="form-group">
                                 <label>Apellidos</label>
-                                <input class="form-control" type="textarea" formControlName="APELLIDOS" required>
+                                <input class="form-control" type="textarea" formControlName="APELLIDOS" [ngClass]="{ 'is-invalid': submitted && f['APELLIDOS'].errors }" required>
+                                <div *ngIf="submitted && f['APELLIDOS'].errors" class="invalid-feedback">
+                                    <div *ngIf="f['APELLIDOS'].errors['required']">Complete este campo</div>
+                                    <div *ngIf="f['APELLIDOS'].errors['minlength']">Minimo de caracteres 4 </div>
+                                    <div *ngIf="f['APELLIDOS'].errors['maxlength']">Maximo de caracteres 100</div>
+
+                                </div>
                             </div>
 
                             <div class="form-group">
                                 <label>Designación</label>
-                                <input class="form-control" type="textarea" formControlName="DESIGNACION" required>
+                                <input class="form-control" formControlName="DESIGNACION" [ngClass]="{ 'is-invalid': submitted && f['DESIGNACION'].errors }" required>
+                                <div *ngIf="submitted && f['DESIGNACION'].errors" class="invalid-feedback">
+                                    <div *ngIf="f['DESIGNACION'].errors['required']">Complete este campo</div>
+                                    <div *ngIf="f['DESIGNACION'].errors['minlength']">Minimo de caracteres 4 </div>
+                                    <div *ngIf="f['DESIGNACION'].errors['maxlength']">Maximo de caracteres 100</div>
+                                </div>
+
 
                             </div>
 
                             <div class="form-group">
                                 <label>Sueldo</label>
-                                <input class="form-control" type="textarea" formControlName="SUELDO" required>
+                                <input class="form-control" type="textarea" formControlName="SUELDO" [ngClass]="{ 'is-invalid': submitted && f['SUELDO'].errors }" required>
+                                <div *ngIf="submitted && f['SUELDO'].errors" class="invalid-feedback">
+                                    <div *ngIf="f['SUELDO'].errors['required']">Complete este campo</div>
+                                    <div *ngIf="f['SUELDO'].errors['minlength']">Minimo de caracteres 3 </div>
+                                    <div *ngIf="f['SUELDO'].errors['maxlength']">Maximo de caracteres 100</div>
 
+                                </div>
                             </div>
 
                             <div class="form-group">
                                 <label>Domicilio</label>
-                                <input class="form-control" type="textarea" formControlName="DIRECCION" required>
+                                <textarea class="form-control" type="textarea" formControlName="DIRECCION" [ngClass]="{ 'is-invalid': submitted && f['DIRECCION'].errors }" required> </textarea>
+                                <div *ngIf="submitted && f['DIRECCION'].errors" class="invalid-feedback">
+                                    <div *ngIf="f['DIRECCION'].errors['required']">Complete este campo</div>
+                                    <div *ngIf="f['DIRECCION'].errors['minlength']">Minimo de caracteres 6 </div>
+                                    <div *ngIf="f['DIRECCION'].errors['maxlength']">Maximo de caracteres 100</div>
+                                </div>
 
                             </div>
 
                             <div class="form-group">
                                 <label>Teléfono</label>
-                                <input class="form-control" type="textarea" formControlName="CONTACTO" required>
+                                <input class="form-control" type="textarea" formControlName="CONTACTO" [ngClass]="{ 'is-invalid': submitted && f['CONTACTO'].errors }" required>
+                                <div *ngIf="submitted && f['CONTACTO'].errors" class="invalid-feedback">
+                                    <div *ngIf="f['CONTACTO'].errors['required']">Complete este campo</div>
+                                    <div *ngIf="f['CONTACTO'].errors['minlength']">Minimo de caracteres 6 </div>
+                                    <div *ngIf="f['CONTACTO'].errors['maxlength']">Maximo de caracteres 100</div>
+
+                                </div>
 
                             </div>
 
 
                             <div class="form-group">
                                 <label>Fecha Inicio de Contrato</label>
-                                <input class="form-control" type="date" formControlName="FEC_INICIO" required>
+                                <input class="form-control" type="date" formControlName="FEC_INICIO" [ngClass]="{ 'is-invalid': submitted && f['FEC_INICIO'].errors }" required>
+                                <div *ngIf="submitted && f['FEC_INICIO'].errors" class="invalid-feedback">
+                                    <div *ngIf="f['FEC_INICIO'].errors['required']">Complete este campo</div>
+
+                                </div>
                             </div>
 
                             <br>
@@ -143,42 +185,86 @@
                             <form [formGroup]="createForm" (ngSubmit)="nuevoEmpleado()">
                                 <div class="form-group">
                                     <label>DNI</label>
-                                    <input class="form-control" type="textarea" formControlName="DNI" required>
+                                    <input class="form-control" type="textarea" formControlName="DNI" [ngClass]="{ 'is-invalid': submitted && fu['DNI'].errors }" required>
+                                    <div *ngIf="submitted && fu['DNI'].errors" class="invalid-feedback">
+                                        <div *ngIf="fu['DNI'].errors['required']">Complete este campo</div>
+                                        <div *ngIf="fu['DNI'].errors['minlength']">Minimo de caracteres 6 </div>
+                                        <div *ngIf="fu['DNI'].errors['maxlength']">Maximo de caracteres 100</div>
+
+
+                                    </div>
                                 </div>
 
                                 <div class="form-group">
                                     <label>Ambos Nombres</label>
-                                    <input class="form-control" type="textarea" formControlName="NOMBRES" required>
+                                    <input class="form-control" type="textarea" formControlName="NOMBRES" [ngClass]="{ 'is-invalid': submitted && fu['NOMBRES'].errors }" required>
+
+                                    <div *ngIf="submitted && fu['NOMBRES'].errors" class="invalid-feedback">
+                                        <div *ngIf="fu['NOMBRES'].errors['required']">Complete este campo</div>
+                                        <div *ngIf="fu['NOMBRES'].errors['minlength']">Minimo de caracteres 3 </div>
+                                        <div *ngIf="fu['NOMBRES'].errors['maxlength']">Maximo de caracteres 100</div>
+                                    </div>
                                 </div>
 
                                 <div class="form-group">
                                     <label>Ambos Apellidos</label>
-                                    <input class="form-control" type="textarea" formControlName="APELLIDOS" required>
+                                    <input class="form-control" type="textarea" formControlName="APELLIDOS" [ngClass]="{ 'is-invalid': submitted && fu['APELLIDOS'].errors }" required>
+                                    <div *ngIf="submitted && fu['APELLIDOS'].errors" class="invalid-feedback">
+                                        <div *ngIf="fu['APELLIDOS'].errors['required']">Complete este campo</div>
+                                        <div *ngIf="fu['APELLIDOS'].errors['minlength']">Minimo de caracteres 4 </div>
+                                        <div *ngIf="fu['APELLIDOS'].errors['maxlength']">Maximo de caracteres 100</div>
+                                    </div>
+
                                 </div>
 
                                 <div class="form-group">
                                     <label>Designación</label>
-                                    <input class="form-control" type="textarea" formControlName="DESIGNACION" required>
+                                    <input class="form-control" type="textarea" formControlName="DESIGNACION" [ngClass]="{ 'is-invalid': submitted && fu['DESIGNACION'].errors }" required>
+                                    <div *ngIf="submitted && fu['DESIGNACION'].errors" class="invalid-feedback">
+                                        <div *ngIf="fu['DESIGNACION'].errors['required']">Complete este campo</div>
+                                        <div *ngIf="fu['DESIGNACION'].errors['minlength']">Minimo de caracteres 3 </div>
+                                        <div *ngIf="fu['DESIGNACION'].errors['maxlength']">Maximo de caracteres 100</div>
+                                    </div>
                                 </div>
 
                                 <div class="form-group">
                                     <label>Sueldo</label>
-                                    <input class="form-control" type="textarea" formControlName="SUELDO" required>
+                                    <input class="form-control" type="textarea" formControlName="SUELDO" [ngClass]="{ 'is-invalid': submitted && fu['SUELDO'].errors }" required>
+                                    <div *ngIf="submitted && fu['SUELDO'].errors" class="invalid-feedback">
+                                        <div *ngIf="fu['SUELDO'].errors['required']">Complete este campo</div>
+                                        <div *ngIf="fu['SUELDO'].errors['minlength']">Minimo de caracteres 3 </div>
+                                        <div *ngIf="fu['SUELDO'].errors['maxlength']">Maximo de caracteres 100</div>
+                                    </div>
+
                                 </div>
 
                                 <div class="form-group">
                                     <label>Domicilio</label>
-                                    <input class="form-control" type="textarea" formControlName="DIRECCION" required>
+                                    <textarea class="form-control" type="textarea" formControlName="DIRECCION" [ngClass]="{ 'is-invalid': submitted && fu['DIRECCION'].errors }" required> </textarea>
+                                    <div *ngIf="submitted && fu['DIRECCION'].errors" class="invalid-feedback">
+                                        <div *ngIf="fu['DIRECCION'].errors['required']">Complete este campo</div>
+                                        <div *ngIf="fu['DIRECCION'].errors['minlength']">Minimo de caracteres 6 </div>
+                                        <div *ngIf="fu['DIRECCION'].errors['maxlength']">Maximo de caracteres 100</div>
+                                    </div>
                                 </div>
 
                                 <div class="form-group">
                                     <label>Teléfono</label>
-                                    <input class="form-control" type="textarea" formControlName="CONTACTO" required>
+                                    <input class="form-control" type="textarea" formControlName="CONTACTO" [ngClass]="{ 'is-invalid': submitted && fu['CONTACTO'].errors }" required>
+                                    <div *ngIf="submitted && fu['CONTACTO'].errors" class="invalid-feedback">
+                                        <div *ngIf="fu['CONTACTO'].errors['required']">Complete este campo</div>
+                                        <div *ngIf="fu['CONTACTO'].errors['minlength']">Minimo de caracteres 6 </div>
+                                        <div *ngIf="fu['CONTACTO'].errors['maxlength']">Maximo de caracteres 100</div>
+                                    </div>
                                 </div>
 
                                 <div class="form-group">
                                     <label>Fecha Inicio de Contrato</label>
-                                    <input class="form-control" type="date" formControlName="FEC_INICIO" required>
+                                    <input class="form-control" type="date" formControlName="FEC_INICIO" [ngClass]="{ 'is-invalid': submitted && fu['FEC_INICIO'].errors }" required>
+                                    <div *ngIf="submitted && fu['FEC_INICIO'].errors" class="invalid-feedback">
+                                        <div *ngIf="fu['FEC_INICIO'].errors['required']">Complete este campo</div>
+
+                                    </div>
                                 </div>
                                 <br>
 
@@ -192,7 +278,7 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal"><i class="fas fa-times"></i> Cancelar</button>
+                    <button type="button" (click)="onReset()" class="btn btn-danger" data-bs-dismiss="modal"><i class="fas fa-times"></i> Cancelar</button>
                 </div>
             </div>
         </div>

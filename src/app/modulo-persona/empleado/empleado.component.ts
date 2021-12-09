@@ -2,7 +2,7 @@
 import { Component, OnInit } from '@angular/core';
 import {ServicePeople} from '../../SERVICES/service_persona/personas.service';
 import {Router, ActivatedRoute} from '@angular/router';
-import {FormGroup, FormBuilder} from '@angular/forms';
+import {FormGroup, FormBuilder, AbstractControl, FormControl, Validators} from '@angular/forms';
 import Swal from 'sweetalert2';
 import * as html2pdf from 'html2pdf.js'
 
@@ -39,6 +39,7 @@ export class EmpleadoComponent implements OnInit {
  updateForm: FormGroup;
   titulo: string ='';
   createForm: FormGroup;
+  submitted = false;
 
   constructor(private servicePeople:ServicePeople,
     private router:Router,
@@ -46,39 +47,63 @@ export class EmpleadoComponent implements OnInit {
      public formBuilder: FormBuilder) {
       this.updateForm = this.formBuilder.group({
         COD_EMPLEADO: '',
-        DNI: '',
-        DESIGNACION:'',
-        SUELDO:'',
-       DIRECCION:'',
-        CONTACTO:'',
-        FEC_INICIO:'',
+        DNI:  ['', [Validators.required,Validators.minLength(4),
+          Validators.maxLength(20)]],
+        DESIGNACION: ['', [Validators.required,Validators.minLength(3),
+          Validators.maxLength(100)]],
+        SUELDO: ['', [Validators.required,Validators.minLength(3),
+          Validators.maxLength(100)]],
+       DIRECCION: ['', [Validators.required,Validators.minLength(6),
+        Validators.maxLength(100)]],
+        CONTACTO: ['', [Validators.required,Validators.minLength(6),
+          Validators.maxLength(100)]],
+        FEC_INICIO:['', [Validators.required]],
         FEC_INGRESO:'',
-        APELLIDOS:'',
-        NOMBRES:''
+        APELLIDOS:['', [Validators.required,Validators.minLength(4),
+          Validators.maxLength(100)]],
+        NOMBRES:['', [Validators.required,Validators.minLength(3),
+          Validators.maxLength(100)]]
         });
 
         this.createForm = this.formBuilder.group({
-          DNI: '',
-          NOMBRES: '',
-          APELLIDOS: '',
-          DESIGNACION: '',
-          SUELDO: '',
-          DIRECCION:'',
-         CONTACTO: '',
-         FEC_INICIO:'',
-        FEC_INGRESO:'',
+          DNI:  ['', [Validators.required,Validators.minLength(4),
+            Validators.maxLength(20)]],
+          NOMBRES: ['', [Validators.required,Validators.minLength(3),
+            Validators.maxLength(100)]],
+          APELLIDOS: ['', [Validators.required,Validators.minLength(4),
+            Validators.maxLength(100)]],
+          DESIGNACION: ['', [Validators.required,Validators.minLength(3),
+            Validators.maxLength(100)]],
+          SUELDO: ['', [Validators.required,Validators.minLength(3),
+            Validators.maxLength(100)]],
+          DIRECCION:['', [Validators.required,Validators.minLength(6),
+            Validators.maxLength(100)]],
+         CONTACTO: ['', [Validators.required,Validators.minLength(6),
+          Validators.maxLength(100)]],
+         FEC_INICIO:['', [Validators.required]],
+        FEC_INGRESO: ''
 
         });
+      }
 
 
 
+
+
+      ngOnInit(): void {
+        this.ListarEmpleado();
 
 
       }
 
-      ngOnInit(): void {
-        this.ListarEmpleado();
+
+          get fu(): { [key: string]: AbstractControl } {
+            return this.createForm.controls;
           }
+          get f(): { [key: string]: AbstractControl } {
+            return this.updateForm.controls;
+          }
+
       ListarEmpleado(){
         this.servicePeople.GetEmpleado().subscribe(res => {
           console.log(res)
@@ -107,6 +132,11 @@ export class EmpleadoComponent implements OnInit {
       }
 
       onUpdate(): any {
+        this.submitted = true;
+
+    if (this.updateForm.invalid) {
+      return;
+    }
         this.servicePeople.updateEmpleado(this.updateForm.value)
         .subscribe(() => {
             console.log('Data updated successfully!')
@@ -121,8 +151,12 @@ export class EmpleadoComponent implements OnInit {
       }
 
       nuevoEmpleado(): any {
-        this.servicePeople.crearEmpleado( this.createForm.value)
-        .subscribe(() => {
+        this.submitted = true;
+
+        if (this.createForm.invalid) {
+          return;
+        }
+        this.servicePeople.crearEmpleado( this.createForm.value).subscribe(() => {
             console.log('Data updated successfully!')
             Swal.fire('Se Inserto con exito',this.titulo,'success')
              this.ListarEmpleado();
@@ -132,6 +166,13 @@ export class EmpleadoComponent implements OnInit {
             Swal.fire('Ocurrio problema',this.titulo,'error')
         });
       }
+
+      onReset(): void {
+        this.submitted = false;
+        this.createForm.reset();
+      }
+
+
 
       eliminarEmpleado(id:any, i:number):any{
         if(window.confirm('Esta seguro de querer elimina el registro?')){
@@ -153,6 +194,7 @@ export class EmpleadoComponent implements OnInit {
 
         )};
       }
+
 
 
 
